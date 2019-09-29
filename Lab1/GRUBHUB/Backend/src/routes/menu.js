@@ -14,7 +14,7 @@ router.post("/addItem",(req,res)=>
     let section = req.body.section;
     let DescriptionOfItem = req.body.DescriptionOfItem;
     let priceOfItem = req.body.priceOfItem;
-   console.log(restaurantID,itemName,section,DescriptionOfItem,priceOfItem);
+   
     addItem= async ()=>
     {
       let itemObj={
@@ -26,7 +26,7 @@ router.post("/addItem",(req,res)=>
         }
 
       let result= await menuDaoObj.addnewItem(itemObj);
-      console.log("result"+result);
+      
       if(result)
       {
         res.status(200).json({responseMessage: 'Added Item'});
@@ -194,10 +194,10 @@ router.post("/deleteSection",(req,res)=>
     {
       let userid=req.body.UserID;
       let restid= await restaurantDaoobj.getRestaurantDetails(userid);
-    let sectionid = req.body.sectionid;
+      let sectionid = req.body.sectionid;
       let result=menuDaoObj.deleteSection(restid,sectionid);
       if(result)
-            res.status(200).json({responseMessage: 'Deleted the Section'});
+        res.status(200).json({responseMessage: 'Deleted the Section'});
       else
         res.status(200).json({responseMessage: 'Could not delete the Section'});
     }
