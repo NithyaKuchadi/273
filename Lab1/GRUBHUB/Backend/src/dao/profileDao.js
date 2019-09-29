@@ -7,7 +7,6 @@ module.exports = class LoginSignupDao {
             await con.query("COMMIT");
             return true;
           } catch (ex) {
-            console.log(ex);
             throw ex;
           } finally {
             await con.release();
@@ -21,7 +20,6 @@ module.exports = class LoginSignupDao {
               await con.query("COMMIT");
               return true;
             } catch (ex) {
-              console.log(ex);
               throw ex;
             } finally {
               await con.release();
