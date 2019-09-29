@@ -10,7 +10,6 @@ module.exports = class LoginSignupDao {
             result = JSON.parse(JSON.stringify(result));
             return result;
           } catch (ex) {
-            console.log(ex);
             throw ex;
           } finally {
             await con.release();
@@ -58,7 +57,6 @@ module.exports = class LoginSignupDao {
            result = JSON.parse(JSON.stringify(result));
           return result;
         } catch (ex) {
-          console.log(ex);
           throw ex;
         } finally {
           await con.release();
