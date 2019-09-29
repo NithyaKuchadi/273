@@ -35,7 +35,6 @@ module.exports = class menuDao {
         async deleteItem(itemid) {
             let con = await dBConnection();
             try {
-              console.log("ITem id in dao is"+itemid);
                 await con.query('DELETE FROM Items WHERE ItemID= ? ',[itemid]);
                 await con.query("COMMIT");
                 return true;
@@ -54,7 +53,6 @@ module.exports = class menuDao {
                     await con.query('INSERT INTO Sections SET ?', [inputData]);
                     await con.query("COMMIT");
                     let sectionID=await con.query('SELECT SectionID FROM Sections WHERE ?', [inputData]);
-                    console.log("Section id      %%%%%%%%%%%%" +sectionID);
                     await con.query("COMMIT");
                     return sectionID;
                   } catch (ex) {
@@ -87,7 +85,7 @@ module.exports = class menuDao {
                   try {
                     let result=  await con.query('SELECT SectionID,SectionName FROM Sections WHERE idOfRestaurant= ?' ,[RestaurantID]);
                       await con.query("COMMIT");
-                      console.log("in dao "+result[0]);
+                     
                      return  JSON.parse(JSON.stringify(result));
                     } catch (ex) {
                       console.log(ex);
@@ -144,7 +142,7 @@ module.exports = class menuDao {
                   async getRestIDS(itemName) {
                     let con = await dBConnection();
                     try {
-                      console.log("Item name is "+itemName);
+                     
                       let result=  await con.query('SELECT * FROM Items WHERE NameOfItem= ?' ,[itemName]);
                         await con.query("COMMIT");
                        return  result;
