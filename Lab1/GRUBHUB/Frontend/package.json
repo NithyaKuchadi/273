@@ -1,0 +1,29 @@
+{
+  "name": "book-store-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "material-table": "latest",
+    "react": "latest",
+    "react-bootstrap": "^1.0.0-beta.12",
+    "react-bootstrap-table": "^4.3.1",
+    "react-bootstrap-table2-editor": "^1.4.0",
+    "react-cookie": "^3.0.4",
+    "react-cookies": "^0.1.0",
+    "react-dom": "latest",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.5",
+    "react-table": "^6.10.3",
+    "reactstrap": "^8.0.1",
+    "react-bootstrap4-modal": "^1.7.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:5000"
+}
