@@ -3,7 +3,7 @@ let mysql = require('promise-mysql');
 module.exports = async () => {
     try {
         let pool = mysql.createPool({
-            connectionLimit: 10,
+            connectionLimit: 100,
             host: 'localhost',
             user: 'root',
             password: 'nithY@123',
@@ -12,7 +12,6 @@ module.exports = async () => {
         if (pool) 
         {
         let con = pool.getConnection();
-        console.log("connection is "+con);
         return con;
         }
     } catch (ex) {
