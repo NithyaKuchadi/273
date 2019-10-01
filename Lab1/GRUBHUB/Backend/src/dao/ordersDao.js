@@ -2,9 +2,11 @@ const dBConnection = require('./ConnectionPooling');
 module.exports = class ordersDao {
     async FetchRestaurantID(userID) {
         let con = await dBConnection();
+        console.log("user id"+userID);
         try { 
             let result= await con.query('SELECT RestaurantID FROM Restaurants WHERE UserID= ?' ,[userID]);
             await con.query("COMMIT");
+            console.log("restid id"+result[0].RestaurantID);
             return result[0].RestaurantID;
           } catch (ex) {
             console.log(ex);
@@ -15,13 +17,23 @@ module.exports = class ordersDao {
           }
         }  
 
-    async showOrders(resID) {
-       let con = await dBConnection();
+    async showOrders(resID,order_type) {
+      console.log("In show Orders resid  "+resID);
+      let result;
+        let con = await dBConnection();
         try {
-            
-            let result= await con.query('SELECT * FROM Orders WHERE RestaurantID= ?' ,[resID]);
+            if(order_type==="new")
+            {
+            result= await con.query('SELECT * FROM Orders WHERE RestaurantID= ? AND StatusOfOrder= ? OR StatusOfOrder = ?' ,[resID,"New","Ready"]);
             await con.query("COMMIT");
-            
+            }
+            else
+            {
+            result= await con.query('SELECT * FROM Orders WHERE RestaurantID= ? AND StatusOfOrder= ?' ,[resID,"Delivered"]);
+            await con.query("COMMIT");
+            }
+
+            console.log("In show Orders result  "+result);
             return JSON.parse(JSON.stringify(result));
           } catch (ex) {
             console.log(ex);
@@ -38,7 +50,7 @@ module.exports = class ordersDao {
                 await con.query("COMMIT");
                 return true;
               } catch (ex) {
-                
+                console.log(ex);
                 throw ex;
               } finally {
                 await con.release();
@@ -52,7 +64,7 @@ module.exports = class ordersDao {
                     await con.query("COMMIT");
                     return true;
                   } catch (ex) {
-                   
+                    console.log(ex);
                     throw ex;
                   } finally {
                     await con.release();
@@ -68,9 +80,9 @@ module.exports = class ordersDao {
                       await con.query("COMMIT");
                       return true;
                     } catch (ex) {
-                      
+                      console.log(ex);
                       await con.query("ROLLBACK");
-                      
+                      console.log(ex);
                       throw ex;
                     } finally {
                       await con.release();
@@ -85,7 +97,9 @@ module.exports = class ordersDao {
                     await con.query("COMMIT");
                     return JSON.parse(JSON.stringify(result));
                   } catch (ex) {
+                    console.log(ex);
                     await con.query("ROLLBACK");
+                    console.log(ex);
                     throw ex;
                   } finally {
                     await con.release();
@@ -99,7 +113,9 @@ module.exports = class ordersDao {
                   await con.query("COMMIT");
                   return JSON.parse(JSON.stringify(result));
                 } catch (ex) {
+                  console.log(ex);
                   await con.query("ROLLBACK");
+                  console.log(ex);
                   throw ex;
                 } finally {
                   await con.release();
