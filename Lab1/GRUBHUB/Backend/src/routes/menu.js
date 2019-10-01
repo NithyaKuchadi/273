@@ -9,27 +9,34 @@ const sha1 = require('sha1');
 
 router.post("/addItem",(req,res)=>
 {
-    let restaurantID = req.body.RestaurantID;
-    let itemName = req.body.itemName;
-    let section = req.body.section;
+    let userID = req.body.UserID;
+    let itemName = req.body.NameOfItem;
     let DescriptionOfItem = req.body.DescriptionOfItem;
-    let priceOfItem = req.body.priceOfItem;
+    let priceOfItem = req.body.PriceOfItem;
+    let SectionName = req.body.SectionName;
+    let ItemImage= req.body.ItemImage
    
     addItem= async ()=>
     {
+      let restid= await restaurantDaoobj.getRestaurantDetails(userID);
+      let section= await menuDaoObj.getSectionID(restid[0].RestaurantID,SectionName);
+
       let itemObj={
-          "RestID":restaurantID,
+          "idofrest":restid[0].RestaurantID,
           "NameOfItem":itemName,
-          "Section":section,
+          "sectID":section[0].SectionID,
           "DescriptionOfItem":DescriptionOfItem,
-           "PriceOfItem":priceOfItem
+           "PriceOfItem":priceOfItem,
+           "ItemImage":ItemImage
         }
 
-      let result= await menuDaoObj.addnewItem(itemObj);
+      let result= await menuDaoObj.addnewItem(itemObj,restid[0].RestaurantID,section[0].SectionID);
       
-      if(result)
+      if(result[0])
       {
-        res.status(200).json({responseMessage: 'Added Item'});
+        res.writeHead(200, {'content-type':'application/json'});
+        res.end(JSON.stringify(result));
+
       }
       else
       {
@@ -52,6 +59,7 @@ router.post("/UpdateItem",(req,res)=>
     let DescriptionOfItem = req.body.DescriptionOfItem;
     let priceOfItem = req.body.PriceOfItem;
     let itemid=req.body.ItemID;
+    let ItemImage=req.body.ItemImage;
   try{
     UpdateItem= async ()=>
     {
@@ -60,13 +68,14 @@ router.post("/UpdateItem",(req,res)=>
            
             "NameOfItem":itemName,
             "DescriptionOfItem":DescriptionOfItem,
-            "PriceOfItem":priceOfItem
+            "PriceOfItem":priceOfItem,
+            "ItemImage":ItemImage
           }
-      let result= await menuDaoObj.updateItem(restid,itemid,itemObj);
+      let result= await menuDaoObj.updateItem(restid[0].RestaurantID,itemid,itemObj);
       if(result)
             res.status(200).json({responseMessage: 'Updated the Item'});
       else
-        res.status(200).json({responseMessage: 'Could not update the Item'});
+            res.status(200).json({responseMessage: 'Could not update the Item'});
     }
     UpdateItem(); 
 }
@@ -107,15 +116,15 @@ router.post("/addSection",(req,res)=>
       let id= await restaurantDaoobj.getRestaurantDetails(userid);
       let sectionObj={
           "SectionName":sectionName,
-          "idOfRestaurant":id,
+          "idOfRestaurant":id[0].RestaurantID
         }
        
-      let SectionID= await menuDaoObj.addnewSection(sectionObj);
+      let result= await menuDaoObj.addnewSection(sectionObj,id[0].RestaurantID);
      
-      if(SectionID)
+      if(result[0])
       {
         res.writeHead(200, {'content-type':'application/json'});
-        res.end(JSON.stringify(SectionID));
+        res.end(JSON.stringify(result));
 
       }
       else
@@ -135,21 +144,23 @@ router.post("/UpdateSection",(req,res)=>
   
     let sectionName = req.body.SectionName;
     let sectionID=req.body.SectionId;
+    let userid=req.body.UserID;
+
    
     UpdateSection= async ()=>
     {
-    
-      let result= await menuDaoObj.updateSection(sectionName,sectionID);
+      let id= await restaurantDaoobj.getRestaurantDetails(userid);
+      let result= await menuDaoObj.updateSection(sectionName,sectionID,id[0].RestaurantID);
      
-      if(result)
-      {
-        res.status(200).json({responseMessage: 'Updated Section'});
-
-      }
-      else
-      {
-        res.status(200).json({responseMessage: 'Could not update Section'});
-      }
+      if(result[0])
+            {
+              res.writeHead(200, {'content-type':'application/json'});
+              res.end(JSON.stringify(result));
+            }
+            else
+            {
+              res.status(200).json({responseMessage: 'Could not get all details'});
+            }
     }
 try{
   UpdateSection(); 
@@ -167,7 +178,8 @@ router.post("/getAllSections",(req,res)=>
     getAllSections= async ()=>
     {
       let restid= await restaurantDaoobj.getRestaurantDetails(userID);
-      let result=await menuDaoObj.getAllSections(restid);
+      
+      let result=await menuDaoObj.getAllSections(restid[0].RestaurantID);
 
           if(result[0])
             {
@@ -195,13 +207,19 @@ router.post("/deleteSection",(req,res)=>
       let userid=req.body.UserID;
       let restid= await restaurantDaoobj.getRestaurantDetails(userid);
       let sectionid = req.body.sectionid;
-      let result=menuDaoObj.deleteSection(restid,sectionid);
-      if(result)
-        res.status(200).json({responseMessage: 'Deleted the Section'});
-      else
-        res.status(200).json({responseMessage: 'Could not delete the Section'});
+      let result=await menuDaoObj.deleteSection(restid[0].RestaurantID,sectionid);
+      
+      if(result[0])
+            {
+              res.writeHead(200, {'content-type':'application/json'});
+              res.end(JSON.stringify(result));
+            }
+            else
+            {
+              res.status(200).json({responseMessage: 'Could not delete section'});
+            }
     }
-    deleteSection(); 
+    deleteSection();
 }
 catch(error)
 {
@@ -217,7 +235,7 @@ router.post("/getAllItems",(req,res)=>
     getAllItems= async ()=>
     {
       let restid= await restaurantDaoobj.getRestaurantDetails(userID);
-      let result=await menuDaoObj.getAllItems(restid,sectionID);
+      let result=await menuDaoObj.getAllItems(restid[0].RestaurantID,sectionID);
 
           if(result[0])
             { 
