@@ -96,39 +96,40 @@ onSignup=(e)=>{
 }
     render(){
         return(
-            <div>
+            <div >
+                <nav className="navbar">
+                    <div className="container-fluid">
+                        <div className="navbar-header">
+                            <a className="navbar-brand" href="/Ownerlogin">GRUBHUB</a>
+                        </div>
+                    </div>
+                </nav>
                 <div>
    <div className="center test-buyer-login">
    <div className="container">
-   <div className="col-sm-6 col-sm-offset-6" style={{left: "400px"}}>
+   <div className="col-sm-6 col-sm-offset-6" style={{left: "0px"}}>
    <div className="login-form">
        <h3>Create your account</h3>  
-       <br></br>
                     <div className="form-group">
                     <label>User Name</label>
                     <input  onChange={this.onChangeOfName} type="text" className="form-control" name="Name" placeholder="Name" required/>
                     </div>
-                        <br/>
                         <div className="form-group">
                         <label>Email</label>  
                                 <input  onChange={this.onChangeOfEmail} type="email" className="form-control" name="Email" placeholder="Email" required/>
                         </div>
-                        <br/>
                         <div className="form-group">
                         <label>Password</label>   
                                 <input  onChange={this.onChangeOfPassword} type="password" className="form-control" name="Password" placeholder="Password" required/>
                         </div>
-                        <br/>
                         <div className="form-group">
                         <label>Restaurant Name</label>  
                                 <input  onChange={this.onChangeOfRestaurantName} type="text" className="form-control" name="RestaurantName" placeholder="RestaurantName" />
                         </div>
-                        <br/>
                         <div className="form-group">
                         <label>Zipcode</label>  
                                 <input  onChange={this.onChangeOfZipCode} type="text" className="form-control" name="ZipCode" placeholder="ZipCode" />
                         </div>
-                        <br/>
                         <div>
                <button onClick={this.onSignup} className="mybtn signup_button" style={{width:"100%"}} >Create your account</button>
                </div>
