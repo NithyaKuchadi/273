@@ -7,6 +7,7 @@ module.exports = class restaurantDao {
             await con.query("COMMIT");
             return result;
           } catch (ex) {
+            console.log(ex);
             throw ex;
           } finally {
             await con.release();
@@ -18,23 +19,27 @@ module.exports = class restaurantDao {
           try {
               let result=await con.query('SELECT * FROM Restaurants WHERE UserID=?',[userid]);
               await con.query("COMMIT");
-              let id=result[0].RestaurantID;
-              return id;
+             console.log("Restaurant id is dao"+result[0].RestaurantID);
+              return result;
             } catch (ex) {
-             throw ex;
+              console.log(ex);
+              throw ex;
             } finally {
               await con.release();
               await con.destroy();
             }
           }
           async getRestaurantsOnID(restid) {
+            console.log("in rest dao restid is "+restid);
             let con = await dBConnection();
             try {
                 let result=await con.query('SELECT * FROM Restaurants WHERE RestaurantID=?',[restid]);
                 await con.query("COMMIT");
+                console.log("in rest dao"+result);
                 return result;
               } catch (ex) {
-               throw ex;
+                console.log(ex);
+                throw ex;
               } finally {
                 await con.release();
                 await con.destroy();
