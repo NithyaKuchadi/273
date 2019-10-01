@@ -17,10 +17,13 @@ router.post("/getRestaurantNames", (req, res) => {
         for (let i = 0; i < result.length; i++) {
           let restid = result[i].idofrest;
           let restaurant = await restaurantDaoobj.getRestaurantsOnID(restid);
-          
+          console.log("restaurant id is " + restaurant);
           restNames.push(restaurant[0]);
+          console.log("Image" + restaurant[0].RestaurantImage);
+          console.log(restaurant[0].RestaurantName);
         }
-        
+        console.log("Restaurant Names:  " + restNames);
+
         res.writeHead(200, { 'content-type': 'application/json' });
         res.end(JSON.stringify(restNames));
       }
@@ -36,17 +39,17 @@ router.post("/getRestaurantNames", (req, res) => {
 });
 router.post("/getItemsSections", (req, res) => {
   let resID = req.body.RestaurantID;
-  
+  console.log("did it come here?????" + resID);
   try {
     getItemsSections = async () => {
       let result = await menuDaoObj.getAllSections(resID);
-      
+      console.log("result     " + result);
       let itemdatalist = [];
       if (result[0]) {
         for (let i = 0; i < result.length; i++) {
           let sectionID = result[i].SectionID;
           let sectionName = result[i].SectionName;
-          
+          console.log("sectionID,  sectionName   " + sectionID + "------------" + sectionName);
           let items = await menuDaoObj.getAllItems(resID, sectionID);
 
           let itemdata = {
@@ -57,7 +60,7 @@ router.post("/getItemsSections", (req, res) => {
 
           itemdatalist.push(itemdata);
         }
-        
+        console.log("itemList    " + itemdatalist);
         res.writeHead(200, { 'content-type': 'application/json' });
         res.end(JSON.stringify(itemdatalist));
       }
@@ -74,11 +77,12 @@ router.post("/getItemsSections", (req, res) => {
 
 router.post("/getItemsONItemID", (req, res) => {
   let itemID = req.body.itemID;
-  
+  console.log("Nithya here" + itemID);
   try {
     getItemsONItemID = async () => {
       let result = await menuDaoObj.getItemsBasedOnItemID(itemID);
-       if (result[0]) {
+      console.log("---------" + result[0].NameOfItem);
+      if (result[0]) {
         res.writeHead(200, { 'content-type': 'application/json' });
         res.end(JSON.stringify(result[0]));
       }
