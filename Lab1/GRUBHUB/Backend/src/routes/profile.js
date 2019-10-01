@@ -4,6 +4,8 @@ const signUpLoginDao = require("../dao/signUpLoginDao");
 const signUpLoginDaoobj = new signUpLoginDao();
 const profileDao = require("../dao/profileDao");
 const profileDaoObj = new profileDao();
+const restaurantDao = require("../dao/restaurantDao");
+const restaurantDaoobj = new restaurantDao();
 const sha1 = require('sha1');
 const multer = require('multer');
 var fs = require('fs');
@@ -20,6 +22,7 @@ const storage = multer.diskStorage({
 });
 
 var upload = multer({ storage: storage });
+
 
 router.post('/upload-file', upload.single('photos'), (req, res) => {
   console.log("DID IT COME HERE???? IN UPLOAD FILE");
@@ -42,17 +45,54 @@ router.post('/download-file/:file(*)', (req, res) => {
 
 router.post("/getProfileDetails", (req, res) => {
   let email = req.body.Email.toLowerCase().trim();
+  let usertype = req.body.UserType;
 
   FetchingDetails = async () => {
     let result = await signUpLoginDaoobj.checkIfEmailExists(email);
-    if (result[0]) {
-      res.writeHead(200, { 'content-type': 'application/json' });
+    if (result[0] && usertype === "Owner") {
+      
+      let userid = result[0].UserID;
+      let output = await restaurantDaoobj.getRestaurantDetails(userid);
+      let obj;
+      if (output[0]) {
+        
+        obj = {
+          RestaurantImage: output[0].RestaurantImage,
+          UserName: result[0].UserName,
+          Email: result[0].Email,
+          PhoneNumber: result[0].PhoneNumber,
+          RestName: result[0].RestName,
+          Cuisine: output[0].Cuisine,
+          ProfileImage: result[0].ProfileImage
+        }
+      }
+      else {
+        obj = {
+          UserName: result[0].UserName,
+          Email: result[0].Email,
+          PhoneNumber: result[0].PhoneNumber,
+          RestName: result[0].RestName,
+          ProfileImage: result[0].ProfileImage,
+          Address: result[0].Address
+        }
 
-      res.end(JSON.stringify(result[0]));
+      }
+      res.writeHead(200, { 'content-type': 'application/json' });
+      res.end(JSON.stringify(obj));
     }
     else {
-      res.status(200).json({ validUser: false });
+      obj = {
+        UserName: result[0].UserName,
+        Email: result[0].Email,
+        PhoneNumber: result[0].PhoneNumber,
+        ProfileImage: result[0].ProfileImage,
+        Address: result[0].Address
+      }
+      res.writeHead(200, { 'content-type': 'application/json' });
+      res.end(JSON.stringify(obj));
     }
+
+
   }
   try {
     FetchingDetails();
@@ -126,7 +166,21 @@ router.post("/updatePhoneNumber", (req, res) => {
     res.status(200).json({ responseMessage: 'Could not update' });
   }
 });
+router.post("/updateAddress", (req, res) => {
+  let userid = req.body.UserID;
+  let Address = req.body.Address;
+  let updatedData = {
+    "Address": Address
+  }
+  let result = profileDaoObj.updateProfile(userid, updatedData);
+  if (result) {
+    res.status(200).json({ responseMessage: 'Successfully Updated' });
 
+  }
+  else {
+    res.status(200).json({ responseMessage: 'Could not update' });
+  }
+});
 router.post("/updateRestaurantName", (req, res) => {
   let userid = req.body.UserID;
   let RestaurantName = req.body.RestaurantName;
