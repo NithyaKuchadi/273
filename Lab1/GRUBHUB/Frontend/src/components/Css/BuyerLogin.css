@@ -185,21 +185,18 @@ height: 650px;
 }
 .item2
 {
- 
-  border:1px #ccc solid;
   text-align:center;
   list-style:none;  
-  height:100px;
+
   font-weight: bold;
 }
 .item3
 {
-  
-  padding-top:0;
+   padding-top:0;
   border:1px #ccc solid;
   text-align:center;
   list-style:none;  
-  height:170px;
+
   font-weight: bold;
 }
 .liststyle
@@ -233,6 +230,7 @@ padding-right:9px;
   background-color: #fff;
   width: 69%;
   display: inline-block;
+  height: 720px;
 }
 
 .globalCart-container.isAlwaysOpen {
@@ -295,4 +293,6 @@ padding-right:9px;
   top: 25%;
   right: auto;
   left: 13%;
+  margin-top: -100px;
+ 
  }
