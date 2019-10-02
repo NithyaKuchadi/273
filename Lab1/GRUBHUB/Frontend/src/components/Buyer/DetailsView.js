@@ -1,11 +1,11 @@
 import React, { Component, useState } from 'react';
 import '../Css/BuyerLogin.css';
 import axios from 'axios';
-import { Jumbotron, Modal } from 'react-bootstrap';
+import {  Modal,Button } from 'react-bootstrap';
 import ItemsView from './ItemsView';
 import cookie from 'react-cookies';
 import ModalView from './ModalView';
-import { Button, ButtonToolbar } from 'react-bootstrap';
+
 import { runInThisContext } from 'vm';
 import {Link} from 'react-router-dom';
 class DetailsView extends Component {
@@ -227,6 +227,7 @@ console.log("View Bag state is "+this.state.viewBag);
          
 
         }
+    
         return (
             <div>
                 <div>
@@ -240,7 +241,9 @@ console.log("View Bag state is "+this.state.viewBag);
                 </nav> 
                 </div>
                 <div className="restaurantCard-leftPane col-md-6">
-                    <div className="jumbotron3"></div>
+                    <div className="jumbotron3">
+
+                    </div>
                     <h2 className="resname">{this.state.RestaurantName}</h2>
                     <ul>
                         {this.state.showItems.map(
@@ -263,7 +266,7 @@ console.log("View Bag state is "+this.state.viewBag);
                      Quantity <input type="Number" defaultValue="1" min="1" max="20" className="form-control" onChange={this.handleQuantity}/>
                      </div>
               </Modal.Body>
-              <Modal.Footer  className="item3">
+              <Modal.Footer  className="item2">
                     <Button variant="primary" className="s-btn s-btn-primary u-block-xs--down s-col-sm-5 s-col-xs-12">
                     <span className="s-btn-copy" onClick={this.handleOrders}>Add to Bag: {this.state.total_price}$</span>
                     </Button>
@@ -282,7 +285,7 @@ console.log("View Bag state is "+this.state.viewBag);
                             {view}
                         </ul>
                     </div>
-                    <h3>Total Price: {this.state.FinalPrice}</h3>
+                    <h3>Total Price: {this.state.FinalPrice}$</h3>
 <br/>
 
                     <button onClick={this.orderItems}>Place Order</button>
