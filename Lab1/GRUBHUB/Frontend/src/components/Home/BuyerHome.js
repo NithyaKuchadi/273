@@ -39,7 +39,12 @@ findfood=(e)=>
         }
     ) 
 }
-
+handleLogout = () => {
+    cookie.remove('cookie1', { path: '/' })
+    cookie.remove('cookie2', { path: '/' })
+    cookie.remove('cookie3', { path: '/' })
+    window.location.Redirect("/");
+}
 
 render()
 {let navLogin=null;
@@ -47,9 +52,8 @@ render()
         console.log("Able to read cookie, in buyer");
         navLogin = (
             <div>
-           
-            <ul className="nav navbar-right">
-                    <li><Link to="/" onClick = {this.handleLogout}><span className="glyphicon glyphicon-user"></span>Logout</Link></li>
+           <ul className="nav navbar-right">
+                    <li><Link to="/BuyerLogin" onClick = {this.handleLogout}><span className="glyphicon glyphicon-user"></span>Logout</Link></li>
             </ul>
             <ul className="nav navbar-right">
                     <li ><Link to="/ProfileOfBuyer"><span className="glyphicon glyphicon-user"></span>Profile</Link></li>
@@ -75,7 +79,7 @@ return(
 <nav className="navbar">
                 <div className="container-fluid">
                     <div className="navbar-header">
-                        <a className="navbar-brand" href="/">GRUBHUB</a>
+                        <a className="navbar-brand" href="/Buyerlogin">GRUBHUB</a>
                     </div>
                     {navLogin}
                 </div>
