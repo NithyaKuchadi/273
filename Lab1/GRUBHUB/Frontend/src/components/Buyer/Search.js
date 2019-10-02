@@ -69,7 +69,6 @@ componentDidMount()
             }
         )  
          console.log("Printing Restaurant STates "+this.state.Restaurants[0].RestaurantName);
-//restnames.push(array[j].RestaurantName);
 
     })
  }
