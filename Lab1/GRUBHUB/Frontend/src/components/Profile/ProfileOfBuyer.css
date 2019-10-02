@@ -103,4 +103,96 @@
 .tablesize
 {
     width: 78%;
+    
 }
+
+.halfsize
+{
+  width:65%;  
+  left:0px;
+}
+.rightsidebutton
+{
+    position: absolute;
+    right:50px;
+    color:blue;
+}
+.rightsidebutton2
+{
+
+    position: relative;
+    left: 100px;
+   
+}
+.rightsidebutton3
+{ padding-top:30px;
+    position: absolute;
+    right:50px; 
+}
+.rightsidebutton143
+{ padding-top:30px;
+    position: absolute;
+   padding-left:80px;
+    left:200px; 
+}
+.leftsidebutton143
+{
+   right:1000px; 
+   left:0;
+   padding-top:50px;
+}
+.setModal
+{
+    opacity:1;
+    position: fixed;
+    /*  */
+    
+}
+.setModal143
+{
+    opacity:1;
+    position: fixed;
+    height:40%;
+}
+.item3
+{
+    text-align:center;
+    list-style:none;  
+    height:140px;
+    font-weight: bold;
+}
+.item2
+{
+ 
+  text-align:center;
+  list-style:none;  
+  height:60px;
+  font-weight: bold;
+}
+
+.Itemsitem2
+{
+ 
+  list-style:none;  
+  height:40px;
+  font-weight: bold; 
+}
+
+.Itemsitem3
+{
+    border:1px #ccc solid;
+   
+    
+    list-style:none;  
+    height:350px;
+    font-weight: bold;
+}
+.modal-dialog {
+    transform: translate(0,-18%);
+   }
+  
+   .modal-content {
+    position: fixed;
+    width: 100%;
+    height: 470px;
+   }
