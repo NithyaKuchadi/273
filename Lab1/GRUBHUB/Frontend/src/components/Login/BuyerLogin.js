@@ -56,13 +56,13 @@ onLogin=(e)=>
     axios.defaults.withCredentials = true;
     axios.post('http://localhost:5000/buyerLogin',logindata)
     .then(response => {
-        console.log("Status Code : ====> ",response.status);
+        
         if(response.status === 200 ){
-            console.log("successfully logged in");
+            
             window.location.replace('/BuyerHome');
         }else if(response.status === 202)
         {
-            console.log("Error in login"); 
+            
             this.setState(
                 {
                     IncorrectCredentials:"Incorrect Credentials"
@@ -78,16 +78,23 @@ onLogin=(e)=>
 render()
 {
     let redirectVar = null;
-    console.log(cookie.load('cookie1'));
+    
     if(cookie.load('cookie1')==="Buyer")
     {
         redirectVar = <Redirect to="/BuyerHome"/>
     }
     return(
         <div >
+            <nav className="navbar">
+                    <div className="container-fluid">
+                        <div className="navbar-header">
+                            <a className="navbar-brand" href="/Buyerlogin">GRUBHUB</a>
+                        </div>
+                    </div>
+                </nav>
             <div className="center test-buyer-login">
             <div className="container">
-            <div className="col-sm-6 col-sm-offset-6" style={{left: "400px"}}>
+            <div className="col-sm-6 col-sm-offset-6" style={{left: "0px"}}>
             <div className="login-form">
                 <h3>Sign in with your Grubhub account</h3>  
                 <br></br>
