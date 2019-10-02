@@ -3,7 +3,7 @@ import '../Css/BuyerLogin.css';
 import DetailsView from './DetailsView';
 import {Redirect} from 'react-router';
 import ModalView from './ModalView';
-
+import '../Profile/ProfileOfBuyer.css';
 class ItemsView extends Component
 {
     constructor()
@@ -34,11 +34,11 @@ class ItemsView extends Component
  
     itemhandle=(e)=>
     { 
-        console.log("in item handle of items view");
+       
         this.state["itemID"]=e.target.getAttribute("item_id");
         this.state["itemName"]=e.target.getAttribute("item_name");
         this.state["modalView"]=true;
-        console.log("MOdalView value"+this.state.modalView);
+       
         if(this.state.modalView)
         { 
                   let data={
@@ -46,18 +46,12 @@ class ItemsView extends Component
                       "itemID": this.state.itemID
                   }
                   this.state["obj"]= data;
-                  console.log("Object is in items view"+this.state.obj);
+              
                   let x=this.state.obj;
-                  console.log("itemName is in items view"+this.state.itemName);
-                  console.log("itemID is in items view"+this.state.itemID);
-
+                 
             this.props.callBackfromItems(data);
             }
-       
-      console.log ("itemID :"+ e.target.getAttribute("item_id"));
-      console.log("itemName: "+e.target.getAttribute("item_name"));
-      console.log("after setting state..itemID.."+this.state.itemID);
-      console.log("after setting state..itemName.."+this.state.itemName);
+      
     }
     
     render()
@@ -67,8 +61,15 @@ class ItemsView extends Component
          return   ( 
           <div className="col-md-6" onClick={this.itemhandle} key={item.ItemID} item_id={item.ItemID}  item_name={item.NameOfItem}> 
                   <div className="item"  item_id={item.ItemID}  item_name={item.NameOfItem} >
+                  <div style={{ display: "inline-flex" }}>
+                    <div>
                    <h3 key={item.ItemID} item_id={item.ItemID}  item_name={item.NameOfItem}>   {item.NameOfItem} </h3>
                    <p item_id={item.ItemID}  item_name={item.NameOfItem}>{item.DescriptionOfItem} </p>
+                   </div>
+                   <div className="rightsidebutton3">
+                   <p item_id={item.ItemID}  item_name={item.NameOfItem}>${item.PriceOfItem}</p>
+                   </div>
+                   </div>
                    </div>
            </div>
          )
@@ -80,7 +81,7 @@ class ItemsView extends Component
            <div className="container">
        <div className="box-1" >
           <li>
-            <h3> {this.props.section.SectionName}</h3> 
+            <h3 style={{"font-weight":"bold"}}> {this.props.section.SectionName}</h3> 
           </li>
           </div>
           </div>
