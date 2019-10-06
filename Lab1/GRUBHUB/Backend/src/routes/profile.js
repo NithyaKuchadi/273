@@ -11,6 +11,7 @@ const multer = require('multer');
 var fs = require('fs');
 const path = require('path');
 
+//Storing documents/Images
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'src/uploads');
@@ -23,6 +24,7 @@ const storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
+//uplaod-file 
 
 router.post('/upload-file', upload.single('photos'), (req, res) => {
   console.log("DID IT COME HERE???? IN UPLOAD FILE");
@@ -30,6 +32,7 @@ router.post('/upload-file', upload.single('photos'), (req, res) => {
   res.end();
 });
 
+//download-file
 
 router.post('/download-file/:file(*)', (req, res) => {
   console.log('Inside DOwnload File');
@@ -50,12 +53,12 @@ router.post("/getProfileDetails", (req, res) => {
   FetchingDetails = async () => {
     let result = await signUpLoginDaoobj.checkIfEmailExists(email);
     if (result[0] && usertype === "Owner") {
-      
+      console.log("is it cumng inside??" + result[0].UserID);
       let userid = result[0].UserID;
       let output = await restaurantDaoobj.getRestaurantDetails(userid);
       let obj;
       if (output[0]) {
-        
+        console.log("output is " + output[0].RestaurantImage);
         obj = {
           RestaurantImage: output[0].RestaurantImage,
           UserName: result[0].UserName,
@@ -202,7 +205,7 @@ router.post("/updateCuisine", (req, res) => {
   let updatedData = {
     "Cuisine": Cuisine
   }
-  let result = profileDaoObj.updateProfile(userid, updatedData);
+  let result = profileDaoObj.updateRestaurant(userid, updatedData);
   if (result) {
     res.status(200).json({ responseMessage: 'Successfully Updated' });
 
