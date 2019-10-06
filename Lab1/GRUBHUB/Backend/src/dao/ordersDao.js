@@ -24,7 +24,7 @@ module.exports = class ordersDao {
         try {
             if(order_type==="new")
             {
-            result= await con.query('SELECT * FROM Orders WHERE RestaurantID= ? AND StatusOfOrder= ? OR StatusOfOrder = ?' ,[resID,"New","Ready"]);
+            result= await con.query('SELECT * FROM Orders WHERE RestaurantID= ? AND (StatusOfOrder= ? OR StatusOfOrder = ?)' ,[resID,"New","Ready"]);
             await con.query("COMMIT");
             }
             else
