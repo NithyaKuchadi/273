@@ -156,7 +156,7 @@ height: 650px;
 }
 .jumbotron3
 {
-  background-image: url(pizza2.png);
+  background-image: url(jumbotronimg.jpg);
   background-size: cover;
   height: 150px;
   
@@ -166,7 +166,7 @@ height: 650px;
   height:80px;
   text-align: center;
   border-bottom:1px #ccc solid;
-  font-weight: bold;
+  font-weight: 40px;
  
 }
 .middle
@@ -175,12 +175,17 @@ height: 650px;
 }
 .item
 {
- 
   border:1px #ccc solid;
-  padding-top:10px;
   text-align:center;
   list-style:none;  
-  height:100px;
+  height:130px;
+  font-weight: bold;
+}
+.imageitem
+{
+  border:1px #ccc solid;
+  height:130px;
+  list-style:none;  
   font-weight: bold;
 }
 .item2
@@ -190,13 +195,13 @@ height: 650px;
 
   font-weight: bold;
 }
-.item3
+.item343
 {
    padding-top:0;
   border:1px #ccc solid;
   text-align:center;
   list-style:none;  
-
+height:240px;
   font-weight: bold;
 }
 .liststyle
@@ -228,9 +233,9 @@ padding-right:9px;
   overflow: hidden;
   padding: 0;
   background-color: #fff;
-  width: 69%;
+  width: 75%;
   display: inline-block;
-  height: 720px;
+ 
 }
 
 .globalCart-container.isAlwaysOpen {
@@ -239,13 +244,15 @@ padding-right:9px;
 
 .globalCart-container {
   background-color: #fff;
-  height: 100%;
-  position: fixed;
+ 
+  position: absolute;
   /* top: 0; */
   /*right: 0;*/
   z-index: 20;
+ 
+  left:900px;
   padding: 60px 0 0 0;
-  width: 40%;
+  width: 49%;
   display: inline-block;
 }
 
@@ -296,3 +303,5 @@ padding-right:9px;
   margin-top: -100px;
  
  }
+
+ 
