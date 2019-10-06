@@ -1,13 +1,11 @@
 import React, { Component, useState } from 'react';
 import '../Css/BuyerLogin.css';
 import axios from 'axios';
-import {  Modal,Button } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import ItemsView from './ItemsView';
 import cookie from 'react-cookies';
-import ModalView from './ModalView';
-
 import { runInThisContext } from 'vm';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 class DetailsView extends Component {
     constructor() {
         super();
@@ -26,46 +24,47 @@ class DetailsView extends Component {
             FinalPrice: 0,
             OrderID: "",
             modalView: true,
-            show:false,
-            price:0,
-            total_price:0,
-            description:"",
-            orderedSuccessfully:"",
-            errorInOrdering:""
+            show: false,
+            price: 0,
+            total_price: 0,
+            description: "",
+            orderedSuccessfully: "",
+            errorInOrdering: "",
+            QuantityNegativeError: ""
         }
         this.callBackfromItems = this.callBackfromItems.bind(this);
         this.callBackfromModal = this.callBackfromModal.bind(this);
     }
     callBackfromItems = (listobj) => {
-        console.log("selected item: " + listobj)
+        console.log("selected item: " + listobj.itemID);
         this.state["itemSelected"] = listobj;
         this.state["itemName"] = listobj.ItemName;
         this.state["itemID"] = listobj.itemID;
         this.setState(
             {
-                show:true
+                show: true
             }
         )
-        let item={
-            "itemID":this.state.itemID
+        let item = {
+            "itemID": this.state.itemID
         }
         axios.defaults.withCredentials = true;
-        axios.post('http://localhost:5000/getItemsONItemID',item)
-        .then((response) => {
-            let data=response.data;
-            console.log("Response data:"+data.PriceOfItem);
-                    this.setState(
-                        {
-                        item : data,
+        axios.post('http://localhost:5000/getItemsONItemID', item)
+            .then((response) => {
+                let data = response.data;
+                console.log("Response data:" + data.PriceOfItem);
+                this.setState(
+                    {
+                        item: data,
                         price: data.PriceOfItem,
                         total_price: data.PriceOfItem,
-                        description:data.DescriptionOfItem,
+                        description: data.DescriptionOfItem,
                         Quantity: 1
 
                     }
-                    ) 
-                })
-        
+                )
+            })
+
     }
     callBackfromModal = (childdatafrommodal) => {
         this.state["totalPrice"] = childdatafrommodal.totalPrice;
@@ -90,10 +89,45 @@ class DetailsView extends Component {
         }
         axios.defaults.withCredentials = true;
         axios.post('http://localhost:5000/getItemsSections', restaurantID)
-            .then((response) => {
-                this.setState({
-                    showItems: this.state.showItems.concat(response.data)
-                })
+            .then(async (response) => {
+                let arr = response.data;
+
+                for (let i = 0; i < arr.length; i++) {
+
+                    let itemsarr = [];
+                    for (let j = 0; j < arr[i].Items.length; j++) {
+                        let imagePreview;
+                        let itemImage = arr[i].Items[j].ItemImage;
+                        itemImage = itemImage.slice(12);
+                        if (itemImage !== null) {
+                            await axios.post('http://localhost:5000/download-file/' + itemImage)
+                                .then(response => {
+                                    imagePreview = 'data:image/jpg;base64, ' + response.data;
+
+                                });
+                        }
+
+                        let item = {
+                            "ItemID":arr[i].Items[j].ItemID,
+                            "NameOfItem": arr[i].Items[j].NameOfItem,
+                            "DescriptionOfItem": arr[i].Items[j].DescriptionOfItem,
+                            "PriceOfItem": arr[i].Items[j].PriceOfItem,
+                            "ItemImage": arr[i].Items[j].ItemImage,
+                            "ProfileImagePreview": imagePreview
+                        }
+                        itemsarr.push(item);
+                    }
+                    let obj = {
+                        "SectionID": arr[i].SectionID,
+                        "SectionName": arr[i].SectionName,
+                        "Items": itemsarr
+                    }
+                    this.setState(
+                        {
+                            showItems: this.state.showItems.concat(obj)
+                        }
+                    )
+                }
                 console.log("SHOW ITEMS data ------------ " + response.data);
             })
         console.log("SHOW ITEMS ------------ " + this.state.showItems);
@@ -107,16 +141,11 @@ class DetailsView extends Component {
     }
 
     orderItems = (e) => {
-        this.setState(
-            {
-                OrderID: this.newOrderId()
-            }
-        )
+
         console.log("going to backend");
         let userID = cookie.load("cookie2");
         this.state.listOfOrders.map((order) => {
             let ordereddata = {
-                "OrderID": this.state.OrderID,
                 "usersofid": userID,
                 "RestaurantID": this.state.RestaurantID,
                 "Price": order.priceoforder,
@@ -124,69 +153,88 @@ class DetailsView extends Component {
                 "Quantity": order.Quantity,
                 "StatusOfOrder": "New"
             }
-console.log("itemsofid is "+order.itemID);
+            console.log("itemsofid is " + order.itemID);
             axios.defaults.withCredentials = true;
             axios.post('http://localhost:5000/OrderItem', ordereddata)
                 .then(response => {
                     console.log("Status Code : ====> ", response.status);
                     if (response.status === 200) {
                         console.log("successfully Ordered");
-                        this.state["orderedSuccessfully"]="Order placed Successfully!!";
+                        this.state["orderedSuccessfully"] = "Order placed Successfully!!";
                     }
                     else {
-                        this.state["errorInOrdering"]="Error in Ordering!!";
+                        this.state["errorInOrdering"] = "Error in Ordering!!";
                         console.log("Error !!! in Order");
                     }
                 });
 
         })
-        this.state['FinalPrice']=0;
-        this.state['listOfOrders']=[];
+        this.state['FinalPrice'] = 0;
+        this.state['listOfOrders'] = [];
 
     }
-    handleClose=()=>
-    {
+    handleClose = () => {
         this.setState(
             {
-                "show":false
+                "show": false
             }
         )
     }
-     
-    handleQuantity=(e)=>
-    {
-       console.log("Quantity value is "+e.target.value);
 
-       this.setState(
-           {
-               Quantity: e.target.value,
-               total_price: e.target.value * this.state.price
-           }
-       )
-   
-       console.log("price after quantity change is " +this.state.price);
-    }
-    handleOrders=(e)=>
-    { 
-        let orderobj={
-            "itemID":this.state.itemID,
-            "ItemName": this.state.itemName,
-            "Quantity": this.state.Quantity,
-            "priceoforder":this.state.total_price
+    handleQuantity = (e) => {
+        console.log("Quantity value is " + e.target.value);
+        if (e.target.value > 0) {
+            this.setState(
+                {
+                    Quantity: e.target.value,
+                    total_price: e.target.value * this.state.price,
+                    QuantityNegativeError: ""
+                }
+            )
+
+            console.log("price after quantity change is " + this.state.price);
         }
-        this.setState(
-            {
-                show:false
+        else {
+            console.log("is it in negative loop?");
+            this.setState(
+                {
+                    QuantityNegativeError: "Quantity cannot be Zero or Negative!!"
+                }
+            )
+        }
+    }
+
+    handleOrders = (e) => {
+        if (this.state.QuantityNegativeError === "") {
+            let orderobj = {
+                "itemID": this.state.itemID,
+                "ItemName": this.state.itemName,
+                "Quantity": this.state.Quantity,
+                "priceoforder": this.state.total_price
             }
-        )
-   this.setState(
-    {
-        viewBag:true,
-        listOfOrders: this.state.listOfOrders.concat(orderobj)
-    }  
-)
-this.state["FinalPrice"] = this.state.FinalPrice+parseInt(this.state.total_price);
-console.log("View Bag state is "+this.state.viewBag);
+            this.setState(
+                {
+                    show: false
+                }
+            )
+            this.setState(
+                {
+                    viewBag: true,
+                    listOfOrders: this.state.listOfOrders.concat(orderobj)
+                }
+            )
+            this.state["FinalPrice"] = this.state.FinalPrice + parseInt(this.state.total_price);
+            console.log("View Bag state is " + this.state.viewBag);
+        }
+        else {
+            this.setState(
+                {
+                    viewBag: false,
+                    show: true
+
+                }
+            )
+        }
     }
     handleLogout = () => {
         cookie.remove('cookie1', { path: '/' })
@@ -195,18 +243,18 @@ console.log("View Bag state is "+this.state.viewBag);
         window.location.Redirect("/");
     }
     render() {
-        let navLogin=null;
-        if(cookie.load('cookie1')==="Buyer"){
+        let navLogin = null;
+        if (cookie.load('cookie1') === "Buyer") {
             console.log("Able to read cookie, in buyer");
             navLogin = (
                 <div>
-               
-                <ul className="nav navbar-right">
-                        <li><Link to="/" onClick = {this.handleLogout}><span className="glyphicon glyphicon-user"></span>Logout</Link></li>
-                </ul>
-                <ul className="nav navbar-right">
+
+                    <ul className="nav navbar-right">
+                        <li><Link to="/" onClick={this.handleLogout}><span className="glyphicon glyphicon-user"></span>Logout</Link></li>
+                    </ul>
+                    <ul className="nav navbar-right">
                         <li ><Link to="/ProfileOfBuyer"><span className="glyphicon glyphicon-user"></span>Profile</Link></li>
-                </ul>
+                    </ul>
                 </div>
             );
         }
@@ -221,74 +269,81 @@ console.log("View Bag state is "+this.state.viewBag);
                         <a href="#"> <li className="liststyle"> ${order.priceoforder}</li></a>
                         <br></br>
                     </div>
- 
+
                 )
             })
-         
+
 
         }
-    
+
         return (
             <div>
                 <div>
-                <nav className="navbar">
-                    <div className="container-fluid">
-                        <div className="navbar-header">
-                            <a className="navbar-brand" href="/">GRUBHUB</a>
+                    <nav className="navbar">
+                        <div className="container-fluid">
+                            <div className="navbar-header">
+                                <a className="navbar-brand" href="/Buyerlogin">GRUBHUB</a>
+                            </div>
+                            {navLogin}
                         </div>
-                        {navLogin}
-                    </div>
-                </nav> 
+                    </nav>
                 </div>
-                <div className="restaurantCard-leftPane col-md-6">
-                    <div className="jumbotron3">
+                <div style={{ display: "inline-flex" }}>
+                    <div className="restaurantCard-leftPane">
+                        <div className="jumbotron3">
 
-                    </div>
-                    <h2 className="resname">{this.state.RestaurantName}</h2>
-                    <ul>
-                        {this.state.showItems.map(
-                            (section) => {
-                                return <ItemsView section={section} key={section.SectionID} callBackfromItems={this.callBackfromItems} />
-                            }
-                        )
-                        }
-                    </ul>
-                </div>
-                <div>
-             <Modal  className="setModal"  show={this.state.show} onHide={this.handleClose} centered={this.state.show}>
-             <Modal.Header  className="item2">
-            <Modal.Title >{this.state.itemName}</Modal.Title>
-            <h3>{this.state.price}$</h3>
-             </Modal.Header>
-             <Modal.Body className="item3">
-                     <div className="form-group">
-                     <h3>{this.state.description}</h3>
-                     Quantity <input type="Number" defaultValue="1" min="1" max="20" className="form-control" onChange={this.handleQuantity}/>
-                     </div>
-              </Modal.Body>
-              <Modal.Footer  className="item2">
-                    <Button variant="primary" className="s-btn s-btn-primary u-block-xs--down s-col-sm-5 s-col-xs-12">
-                    <span className="s-btn-copy" onClick={this.handleOrders}>Add to Bag: {this.state.total_price}$</span>
-                    </Button>
-                     <Button variant="secondary" onClick={this.handleClose} className="s-btn s-btn-primary u-block-xs--down s-col-sm-5 s-col-xs-12">
-                     <span className="s-btn-copy">Close</span>
-                    </Button>
-                </Modal.Footer>
-              </Modal>
-                </div>
-                <div className="globalCart-container s-hidden-xs s-col-xs-12 s-col-md-5 s-col-lg-3 s-pull-right isAlwaysOpen">
-                    <div className="resname1">
-                        <label>Your Order</label>
-                    </div>
-                    <div className="inline">
+                        </div>
+                        <h2 className="resname">{this.state.RestaurantName}</h2>
                         <ul>
-                            {view}
+                            {this.state.showItems.map(
+                                (section) => {
+                                    return <ItemsView section={section} key={section.SectionID} callBackfromItems={this.callBackfromItems} />
+                                }
+                            )
+                            }
                         </ul>
                     </div>
-                    <h3>Total Price: {this.state.FinalPrice}$</h3>
-<br/>
+                    <div>
+                        <Modal className="setModal" show={this.state.show} onHide={this.handleClose} centered={this.state.show}>
+                            <Modal.Header className="item2">
+                                <Modal.Title >{this.state.itemName}</Modal.Title>
 
-                    <button onClick={this.orderItems}>Place Order</button>
+                            </Modal.Header>
+                            <Modal.Body className="item343">
+                                <div className="form-group">
+                                    <h3>{this.state.price}$</h3>
+                                    <br />
+                                    <h3>{this.state.description}</h3>
+                                    <br />
+                                    <div style={{ color: "red" }}>{this.state.QuantityNegativeError}</div>
+                                    Quantity <input type="Number" defaultValue="1" min="1" max="20" className="form-group" style={{ textAlign: "center" }} onChange={this.handleQuantity} />
+
+                                </div>
+                            </Modal.Body>
+                            <Modal.Footer className="item2">
+                                <Button variant="primary" className="s-btn s-btn-primary u-block-xs--down s-col-sm-5 s-col-xs-12">
+                                    <span className="s-btn-copy" onClick={this.handleOrders}>Add to Bag: {this.state.total_price}$</span>
+                                </Button>
+                                <Button variant="secondary" onClick={this.handleClose} className="s-btn s-btn-primary u-block-xs--down s-col-sm-5 s-col-xs-12">
+                                    <span className="s-btn-copy">Close</span>
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
+                    </div>
+                    <div className="globalCart-container s-hidden-xs s-col-xs-12 s-col-md-5 s-col-lg-3 s-pull-right isAlwaysOpen">
+                        <div className="resname1">
+                            <h3>Your Order</h3>
+                        </div>
+                        <div className="inline">
+                            <ul>
+                                {view}
+                            </ul>
+                        </div>
+                        <h4>Total Price: {this.state.FinalPrice}$</h4>
+                        <br />
+
+                        <button onClick={this.orderItems}>Place Order</button>
+                    </div>
                 </div>
             </div>
         )
