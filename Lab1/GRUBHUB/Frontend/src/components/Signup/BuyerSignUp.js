@@ -9,7 +9,8 @@ class BuyerSignUp extends Component {
         this.State = {
             UserName: "",
             Email: "",
-            Password: ""
+            Password: "",
+            Error:""
         }
         this.handleChange = this.handleChange.bind(this);
         this.onSignUp = this.onSignUp.bind(this);
@@ -20,7 +21,8 @@ class BuyerSignUp extends Component {
                 [e.target.name]: e.target.value
             }
         )
-       
+        console.log(this.state);
+        // console.log(this.state.UserName+"     "+this.state.Email+"      "+this.state.Password);
     }
     onSignUp = (e) => {
         e.preventDefault();
@@ -33,12 +35,17 @@ class BuyerSignUp extends Component {
         axios.defaults.withCredentials = true;
         axios.post('http://localhost:5000/Buyersignup', Userdata)
             .then(response => {
-                
+                console.log("Status Code : ====> ", response.status);
                 if (response.status === 200) {
-                    
+                    console.log("successfully signuped");
                     window.location.replace('/BuyerLogin')
-                } else {
-                    console.log("Error !!! in create");
+                } else if(response.status === 500)
+                {
+                    this.setState(
+                        {
+                            Error: "Cannot create User!!"
+                        }
+                    )
                 }
             });
     }
@@ -55,16 +62,18 @@ class BuyerSignUp extends Component {
                 <div className="center test-buyer-login">
                     <div className="container">
                         <div className="col-sm-6 col-sm-offset-6" style={{ left: "0px" }}>
+                        <form onSubmit={this.onSignUp} method="post" autoComplete="off">
                             <div className="login-form">
                                 <h3>Create your account</h3>
                                 <br></br>
+                                
                                 <div className="form-group">
                                     <label>User Name</label>
                                     <input onChange={this.handleChange} type="text" className="form-control" name="UserName" placeholder="User Name" required />
                                 </div>
                                 <div className="form-group">
                                     <label>Email</label>
-                                    <input onChange={this.handleChange} type="text" className="form-control" name="Email" placeholder="Email Address" required />
+                                    <input onChange={this.handleChange} type="email" className="form-control" name="Email" placeholder="Email Address" required />
                                 </div>
                                 <div className="form-group">
                                     <label>Password</label>
@@ -73,7 +82,7 @@ class BuyerSignUp extends Component {
                                 <br></br>
                                 <br></br>
                                 <div>
-                                    <button onClick={this.onSignUp} className="mybtn signup_button" style={{ width: "100%" }} >Create your account</button>
+                                <input type="submit" className="mybtn signup_button" style={{width:"100%"}} value="Create your account" />
                                 </div>
                                 <br></br>
                                 <div className="mydiv">
@@ -92,6 +101,7 @@ class BuyerSignUp extends Component {
                                 <br></br>
                                 <br></br>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
