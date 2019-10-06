@@ -49,6 +49,7 @@ componentWillMount()
             "UserID": cookie.load('cookie2'),
             "SectionName":this.state.SectionName,
             "ItemImage": this.state.ItemImage
+            
         }
         axios.defaults.withCredentials = true;
         axios.post('http://localhost:5000/addItem',addData)
@@ -57,6 +58,8 @@ componentWillMount()
            this.setState(
                {
                 showItems:response.data,
+                show:false,
+                ProfileImagePreview:undefined
                }
            )
 
@@ -157,22 +160,42 @@ componentWillMount()
     }
     handleItemImage=(e)=>
     {
+        let profilePhoto=e.target.value;
+        console.log("profile photo is "+profilePhoto);
+        let profilePhotoname=profilePhoto.slice(12);
+        console.log("name is "+profilePhotoname);
         this.setState(
             {
                 ItemImage: e.target.value
             }
         )
-        let imagefile=e.target.value;
-        imagefile=imagefile.slice(12);
-        axios.post('http://localhost:5000/download-file/' + imagefile)
-        .then(response => {
-            let imagePreview = 'data:image/jpg;base64, ' + response.data;
-            this.setState({
-                ProfileImagePreview: imagePreview
-            })
+        
+            var data = new FormData();
+            data.append('photos', profilePhotoname);
+            axios.defaults.withCredentials = true;
+            axios.post('http://localhost:5000/upload-file', data)
+                .then(response => {
+                    if (response.status === 200) {
+                       
+                        //Download image
+                        axios.post('http://localhost:5000/download-file/' + profilePhotoname)
+                            .then(response => {
+                                let imagePreview = 'data:image/jpg;base64, ' + response.data;
+                                this.setState({
+                                   
+                                    ProfileImagePreview: imagePreview
+                                })
 
-        })
-
+                            }).catch((err) => {
+                                if (err) {
+                                    this.setState({
+                                        errorRedirect: true
+                                    })
+                                }
+                            });
+                    }
+                });
+       
     }
     handleMenuSection=(e)=>
     {
