@@ -5,7 +5,6 @@ import cookie from 'react-cookies';
 import {Redirect} from 'react-router';
 import {Navbar} from "react-bootstrap";
 import '../Css/BuyerLogin.css';
-import Background from "../Grubhub_homepageImage.webp";
 
 class BuyerLogin extends Component
 {
@@ -15,7 +14,6 @@ constructor()
     this.state={
         Email:"",
         Password:"",
-        backgroundImage: `url(${Background})`,
         EmptyCredentials:"",
         IncorrectCredentials:""
     }
@@ -56,13 +54,13 @@ onLogin=(e)=>
     axios.defaults.withCredentials = true;
     axios.post('http://localhost:5000/buyerLogin',logindata)
     .then(response => {
-        
+        console.log("Status Code : ====> ",response.status);
         if(response.status === 200 ){
-            
+            console.log("successfully logged in");
             window.location.replace('/BuyerHome');
         }else if(response.status === 202)
         {
-            
+            console.log("Error in login"); 
             this.setState(
                 {
                     IncorrectCredentials:"Incorrect Credentials"
@@ -78,7 +76,7 @@ onLogin=(e)=>
 render()
 {
     let redirectVar = null;
-    
+    console.log(cookie.load('cookie1'));
     if(cookie.load('cookie1')==="Buyer")
     {
         redirectVar = <Redirect to="/BuyerHome"/>
@@ -99,10 +97,11 @@ render()
                 <h3>Sign in with your Grubhub account</h3>  
                 <br></br>
                 {this.state.EmptyCredentials}
-                {this.state.IncorrectCredentials}
+                <div style={{color: "red"}}>{this.state.IncorrectCredentials}</div>
+                <form onSubmit={this.onLogin} method="post" autoComplete="off">
                         <div className="form-group">
                        <label>Email</label>
-                            <input onChange = {this.handleChange} type="text" className="form-control" name="Email" placeholder="Email Address" required/>
+                            <input onChange = {this.handleChange} type="email" className="form-control" name="Email" placeholder="Email Address" required/>
                         </div>
                         <div className="form-group">
                            <label>Password</label>
@@ -111,7 +110,8 @@ render()
                         <br></br>
                         <br></br>
                         <div>
-                        <button onClick = {this.onLogin} className="s-btn-img mybtn grubhub_button " style={{width:"100%"}} >Sign In</button>
+    
+                        <input type="submit" className="s-btn-img mybtn grubhub_button " style={{width:"100%"}} value="Sign In" />
                         </div>
                         <br></br>
                         <div className="mydiv">
@@ -129,7 +129,9 @@ render()
                         <h4> <a className="bg-default" href="/BuyerSignUp">Create your account</a></h4>
                         <br></br>
                         <br></br>
+                    </form>
                 </div>
+                
             </div>
             </div>
             </div>
