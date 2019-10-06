@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-
 import axios from 'axios';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
 import { Navbar } from "react-bootstrap";
 import '../Css/BuyerLogin.css';
-import Background from "../Grubhub_homepageImage.webp";
+
 
 class OwnerLogin extends Component {
     constructor() {
@@ -13,7 +12,6 @@ class OwnerLogin extends Component {
         this.state = {
             Email: "",
             Password: "",
-            backgroundImage: `url(${Background})`,
             EmptyCredentials: "",
             IncorrectCredentials: ""
         }
@@ -51,12 +49,12 @@ class OwnerLogin extends Component {
             axios.defaults.withCredentials = true;
             axios.post('http://localhost:5000/Ownerlogin', logindata)
                 .then(response => {
-                    
+                    console.log("Status Code : ====> ", response.status);
                     if (response.status === 200) {
-                        
+                        console.log("successfully logged in");
                         window.location.replace('/Order');
                     } else if (response.status === 202) {
-                        
+                        console.log("Error in login");
                         this.setState(
                             {
                                 IncorrectCredentials: "Incorrect Credentials"
@@ -68,7 +66,7 @@ class OwnerLogin extends Component {
     }
     render() {
         let redirectVar = null;
-        
+        console.log(cookie.load('cookie1'));
         if (cookie.load('cookie1') === "Owner") {
             redirectVar = <Redirect to="/Order" />
         }
@@ -88,10 +86,11 @@ class OwnerLogin extends Component {
                                 <h3>Sign in with your Grubhub account</h3>
                                 <br></br>
                                 {this.state.EmptyCredentials}
-                                {this.state.IncorrectCredentials}
+                                <div style={{color:"red"}}>{this.state.IncorrectCredentials}</div>
+                            <form onSubmit={this.onLogin} method="post" autoComplete="off">
                                 <div className="form-group">
                                     <label>Email</label>
-                                    <input onChange={this.handleChange} type="text" className="form-control" name="Email" placeholder="Email Address" required />
+                                    <input onChange={this.handleChange} type="email" className="form-control" name="Email" placeholder="Email Address" required />
                                 </div>
                                 <div className="form-group">
                                     <label>Password</label>
@@ -100,7 +99,8 @@ class OwnerLogin extends Component {
                                 <br></br>
                                 <br></br>
                                 <div>
-                                    <button onClick={this.onLogin} className="s-btn-img mybtn grubhub_button " style={{ width: "100%" }} >Sign In</button>
+                                    
+                                    <input type="submit" className="s-btn-img mybtn grubhub_button " style={{width:"100%"}} value="Sign In" />
                                 </div>
                                 <br></br>
                                 <div className="mydiv">
@@ -118,6 +118,7 @@ class OwnerLogin extends Component {
                                 <h4> <a className="bg-default" href="/OwnerSignup">Create your account</a></h4>
                                 <br></br>
                                 <br></br>
+                                </form>
                             </div>
                         </div>
                     </div>
