@@ -16,6 +16,11 @@
 {
     width: 200px;
 }
+.img-style2
+{
+width: 100px;
+height:130px;
+}
 .li-id
 {
     padding: 20px;
@@ -129,11 +134,29 @@
     position: absolute;
     right:50px; 
 }
+.rightsidebutton311
+{ 
+    position: absolute;
+  
+   text-align: center;
+   left:160px;
+}
 .rightsidebutton143
 { padding-top:30px;
     position: absolute;
    padding-left:80px;
     left:200px; 
+}
+.leftside
+{
+    left:0;
+    padding-left: 0px;
+    float: left;
+}
+.rightsidebutton343
+{  padding-top:-20px;
+    left:250px; 
+    padding-left:30px ;
 }
 .leftsidebutton143
 {
@@ -159,6 +182,13 @@
     text-align:center;
     list-style:none;  
     height:140px;
+    font-weight: bold;
+}
+.item343
+{
+    text-align:center;
+    list-style:none;  
+    
     font-weight: bold;
 }
 .item2
