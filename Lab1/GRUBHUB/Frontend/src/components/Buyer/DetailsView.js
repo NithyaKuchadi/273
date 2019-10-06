@@ -161,6 +161,12 @@ class DetailsView extends Component {
                     if (response.status === 200) {
                         console.log("successfully Ordered");
                         this.state["orderedSuccessfully"] = "Order placed Successfully!!";
+                        this.setState(
+                            {
+                                FinalPrice: 0,
+                                listOfOrders:[]
+                            }
+                        )
                     }
                     else {
                         this.state["errorInOrdering"] = "Error in Ordering!!";
@@ -169,8 +175,7 @@ class DetailsView extends Component {
                 });
 
         })
-        this.state['FinalPrice'] = 0;
-        this.state['listOfOrders'] = [];
+       
 
     }
     handleClose = () => {
