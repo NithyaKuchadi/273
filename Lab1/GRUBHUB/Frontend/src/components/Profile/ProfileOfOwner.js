@@ -4,7 +4,7 @@ import { Redirect } from 'react-router';
 import axios from 'axios';
 import './ProfileOfBuyer.css';
 import { Link } from 'react-router-dom';
-const sha1 = require('sha1');
+import validator from 'validator';
 class ProfileOfOwner extends Component {
     constructor() {
         super();
@@ -34,7 +34,8 @@ class ProfileOfOwner extends Component {
             RestaurantImage: "",
             RestaurantImagePreview: undefined,
             update_RestaurantImage: false,
-            Original_RestaurantImage: true
+            Original_RestaurantImage: true,
+            PhoneNumberError:""
 
         }
     }
@@ -47,11 +48,11 @@ class ProfileOfOwner extends Component {
             Name: this.state.Name,
             UserID: userID
         }
-        
+        console.log('Data: ', data);
         axios.post('http://localhost:5000/updateUserName', data)
             .then(response => {
                 if (response.status === 200) {
-                    
+                    console.log('Updated the profile');
                     this.setState(
                         {
                             Original_Name: true,
@@ -75,7 +76,7 @@ class ProfileOfOwner extends Component {
             ProfileImage: this.state.ProfileImage,
             UserID: userID
         }
-        
+        console.log('Data: ', data);
         axios.post('http://localhost:5000/updateProfileImage', data)
             .then(response => {
                 if (response.status === 200) {
@@ -104,7 +105,7 @@ class ProfileOfOwner extends Component {
             RestaurantImage: this.state.RestaurantImage,
             UserID: userID
         }
-        
+        console.log('Data: ', data);
         axios.post('http://localhost:5000/updateRestaurantImage', data)
             .then(response => {
                 if (response.status === 200) {
@@ -133,7 +134,7 @@ class ProfileOfOwner extends Component {
             Email: this.state.Email,
             UserID: userID
         }
-        
+        console.log('Data: ', data);
         axios.post('http://localhost:5000/updateEmail', data)
             .then(response => {
                 if (response.status === 200) {
@@ -161,7 +162,17 @@ class ProfileOfOwner extends Component {
             PhoneNumber: this.state.PhoneNumber,
             UserID: userID
         }
-        
+        console.log('Data: ', data);
+        if(!validator.isMobilePhone(this.state.PhoneNumber))
+        {
+            this.setState(
+                {
+                    PhoneNumberError:"Not in Correct Format!!"
+                }
+            )
+        }
+        else
+        {
         axios.post('http://localhost:5000/updatePhoneNumber', data)
             .then(response => {
                 if (response.status === 200) {
@@ -180,6 +191,7 @@ class ProfileOfOwner extends Component {
                     })
                 }
             });
+        }   
     }
     updateRestaurantName = (e) => {
         e.preventDefault();
@@ -189,7 +201,7 @@ class ProfileOfOwner extends Component {
             RestaurantName: this.state.RestaurantName,
             UserID: userID
         }
-        
+        console.log('Data: ', data);
         axios.post('http://localhost:5000/updateRestaurantName', data)
             .then(response => {
                 if (response.status === 200) {
@@ -209,7 +221,7 @@ class ProfileOfOwner extends Component {
                 }
             });
     }
-    updateCuisine = (e) => {
+    updateCuisineedit = (e) => {
         e.preventDefault();
         let userID = cookie.load('cookie2');
         axios.defaults.withCredentials = true;
@@ -217,7 +229,7 @@ class ProfileOfOwner extends Component {
             Cuisine: this.state.Cuisine,
             UserID: userID
         }
-        
+        console.log('Data: ', data);
         axios.post('http://localhost:5000/updateCuisine', data)
             .then(response => {
                 if (response.status === 200) {
@@ -247,7 +259,9 @@ class ProfileOfOwner extends Component {
             axios.post('http://localhost:5000/upload-file', data)
                 .then(response => {
                     if (response.status === 200) {
-                        
+                        console.log('Profile Photo Name: ', profilePhoto.name);
+                        console.log(profilePhoto);
+                        //Download image
                         axios.post('http://localhost:5000/download-file/' + profilePhoto.name)
                             .then(response => {
                                 let imagePreview = 'data:image/jpg;base64, ' + response.data;
@@ -267,7 +281,7 @@ class ProfileOfOwner extends Component {
                 });
         }
         else if (e.target.name === "RestaurantImage") {
-            
+            console.log(e.target.files);
             var profilePhoto = e.target.files[0];
             var data = new FormData();
             data.append('photos', profilePhoto);
@@ -275,7 +289,8 @@ class ProfileOfOwner extends Component {
             axios.post('http://localhost:5000/upload-file', data)
                 .then(response => {
                     if (response.status === 200) {
-                        
+                        console.log('Profile Photo Name: ', profilePhoto.name);
+                        //Download image
                         axios.post('http://localhost:5000/download-file/' + profilePhoto.name)
                             .then(response => {
                                 let imagePreview = 'data:image/jpg;base64, ' + response.data;
@@ -301,7 +316,7 @@ class ProfileOfOwner extends Component {
             this.setState({
                 [name]: value
             });
-            
+            console.log("value changed: " + [name] + "   " + value);
         }
     }
 
@@ -326,7 +341,7 @@ class ProfileOfOwner extends Component {
                         RestaurantImage: data.RestaurantImage
 
                     });
-                   
+                    console.log('Restaurant********* Photo Name: ', data.RestaurantImage);
 
                     //Download image
                     if (data.ProfileImage !== null) {
@@ -369,7 +384,7 @@ class ProfileOfOwner extends Component {
         }
         let navLogin = null;
         if (cookie.load('cookie1') === "Owner") {
-            
+            console.log("Able to read cookie, in buyer");
             navLogin = (
                 <div>
 
@@ -547,6 +562,7 @@ class ProfileOfOwner extends Component {
                                     </form>
                                 </div>}
                                 {this.state.Original_Email && <div>
+                                    
                                     <li className="li-id1">
                                         <div style={{ display: "inline-flex" }}>
                                             <div>
@@ -557,14 +573,18 @@ class ProfileOfOwner extends Component {
                                             </div>
                                         </div>
                                     </li>
+                                    
                                 </div>}
                                 {this.state.update_Email && <div>
-                                    <form>
-                                        <div className="form-group">
+                                    <form onSubmit={this.updateProfileEmail}  method="post" autoComplete="off">
+                                        <div>
                                             <h4>Edit email</h4>
-                                            <input type="text" name="Email" id="Email" className="form-control form-control-lg" placeholder="Email address" onChange={this.handleChange} value={this.state.Email} />
+                                            <input type="email" name="Email" id="Email" className="form-control form-control-lg" placeholder="Email address" onChange={this.handleChange} value={this.state.Email} />
                                         </div>
-                                        <button onClick={this.updateProfileEmail} className="profilename">Save Changes</button><br />
+                                        
+                                        <input type="submit" className="profilename"  value="Save Changes" />
+
+                                        <br />
                                         <button className="profileCancel">Cancel</button>
                                         <br />
                                     </form>
@@ -572,9 +592,11 @@ class ProfileOfOwner extends Component {
                                 {this.state.Original_PhoneNumber && <div>
                                     <li className="li-id1">
                                         <div style={{ display: "inline-flex" }}>
+                                        
                                             <div>
                                                 <p className="name">Phone Number</p> <p>{this.state.PhoneNumber}</p>
                                             </div>
+                                           
                                             <div className="rightsidebutton">
                                                 <p onClick={updatePhoneNumber}> <Link to="/ProfileOfOwner">Edit</Link></p>
                                             </div>
@@ -585,7 +607,9 @@ class ProfileOfOwner extends Component {
                                     <form>
                                         <div className="form-group">
                                             <h4>Edit Phone Number</h4>
-
+                                            
+                                           <div style={{color:"red"}}>{this.state.PhoneNumberError}</div> 
+                                            
                                             <input type="text" name="PhoneNumber" id="PhoneNumber" className="form-control form-control-lg" placeholder="Phone Number" onChange={this.handleChange} value={this.state.PhoneNumber} />
 
                                         </div>
@@ -677,7 +701,7 @@ class ProfileOfOwner extends Component {
                                     <input type="text" name="Cuisine" id="Cuisine" className="form-control form-control-lg" placeholder="Cuisine" onChange={this.handleChange} value={this.state.Cuisine} />
 
                                 </div>
-                                <button onClick={this.updateCuisine} className="profilename">Save Changes</button>
+                                <button onClick={this.updateCuisineedit} className="profilename">Save Changes</button>
                                 <button className="profileCancel">Cancel</button>
                                 <br />
                             </form>
