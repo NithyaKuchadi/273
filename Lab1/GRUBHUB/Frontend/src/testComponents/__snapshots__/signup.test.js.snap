@@ -1,0 +1,2562 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProfileOfBuyer should render correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <BuyerSignUp />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <nav
+          className="navbar"
+>
+          <div
+                    className="container-fluid"
+          >
+                    <div
+                              className="navbar-header"
+                    >
+                              <a
+                                        className="navbar-brand"
+                                        href="/Buyerlogin"
+                              >
+                                        GRUBHUB
+                              </a>
+                    </div>
+          </div>
+</nav>,
+        <div
+          className="center test-buyer-login"
+>
+          <div
+                    className="container"
+          >
+                    <div
+                              className="col-sm-6 col-sm-offset-6"
+                              style={
+                                        Object {
+                                                  "left": "0px",
+                                                }
+                              }
+                    >
+                              <form
+                                        autoComplete="off"
+                                        method="post"
+                                        onSubmit={[Function]}
+                              >
+                                        <div
+                                                  className="login-form"
+                                        >
+                                                  <h3>
+                                                            Create your account
+                                                  </h3>
+                                                  <br />
+                                                  <div
+                                                            className="form-group"
+                                                  >
+                                                            <label>
+                                                                      User Name
+                                                            </label>
+                                                            <input
+                                                                      className="form-control"
+                                                                      name="UserName"
+                                                                      onChange={[Function]}
+                                                                      placeholder="User Name"
+                                                                      required={true}
+                                                                      type="text"
+                                                            />
+                                                  </div>
+                                                  <div
+                                                            className="form-group"
+                                                  >
+                                                            <label>
+                                                                      Email
+                                                            </label>
+                                                            <input
+                                                                      className="form-control"
+                                                                      name="Email"
+                                                                      onChange={[Function]}
+                                                                      placeholder="Email Address"
+                                                                      required={true}
+                                                                      type="email"
+                                                            />
+                                                  </div>
+                                                  <div
+                                                            className="form-group"
+                                                  >
+                                                            <label>
+                                                                      Password
+                                                            </label>
+                                                            <input
+                                                                      className="form-control"
+                                                                      name="Password"
+                                                                      onChange={[Function]}
+                                                                      placeholder="Password"
+                                                                      required={true}
+                                                                      type="password"
+                                                            />
+                                                  </div>
+                                                  <br />
+                                                  <br />
+                                                  <div>
+                                                            <input
+                                                                      className="mybtn signup_button"
+                                                                      style={
+                                                                                Object {
+                                                                                          "width": "100%",
+                                                                                        }
+                                                                      }
+                                                                      type="submit"
+                                                                      value="Create your account"
+                                                            />
+                                                  </div>
+                                                  <br />
+                                                  <div
+                                                            className="mydiv"
+                                                  >
+                                                            <span
+                                                                      className="myspan"
+                                                            >
+                                                                      or
+                                                            </span>
+                                                  </div>
+                                                  <br />
+                                                  <div>
+                                                            <button
+                                                                      className="mybtn facebook_button"
+                                                            >
+                                                                      Continue with Facebook
+                                                            </button>
+                                                  </div>
+                                                  <br />
+                                                  <div>
+                                                            <button
+                                                                      className="mybtn google_button"
+                                                            >
+                                                                      Continue with Google
+                                                            </button>
+                                                  </div>
+                                                  <br />
+                                                  <h4>
+                                                             Have an account? 
+                                                            <a
+                                                                      className="bg-default"
+                                                                      href="/BuyerLogin"
+                                                            >
+                                                                      Sign in
+                                                            </a>
+                                                  </h4>
+                                                  <br />
+                                                  <br />
+                                        </div>
+                              </form>
+                    </div>
+          </div>
+</div>,
+        <br />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div
+            className="container-fluid"
+>
+            <div
+                        className="navbar-header"
+            >
+                        <a
+                                    className="navbar-brand"
+                                    href="/Buyerlogin"
+                        >
+                                    GRUBHUB
+                        </a>
+            </div>
+</div>,
+          "className": "navbar",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="navbar-header"
+>
+              <a
+                            className="navbar-brand"
+                            href="/Buyerlogin"
+              >
+                            GRUBHUB
+              </a>
+</div>,
+            "className": "container-fluid",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <a
+                className="navbar-brand"
+                href="/Buyerlogin"
+>
+                GRUBHUB
+</a>,
+              "className": "navbar-header",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "GRUBHUB",
+                "className": "navbar-brand",
+                "href": "/Buyerlogin",
+              },
+              "ref": null,
+              "rendered": "GRUBHUB",
+              "type": "a",
+            },
+            "type": "div",
+          },
+          "type": "div",
+        },
+        "type": "nav",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div
+            className="container"
+>
+            <div
+                        className="col-sm-6 col-sm-offset-6"
+                        style={
+                                    Object {
+                                                "left": "0px",
+                                              }
+                        }
+            >
+                        <form
+                                    autoComplete="off"
+                                    method="post"
+                                    onSubmit={[Function]}
+                        >
+                                    <div
+                                                className="login-form"
+                                    >
+                                                <h3>
+                                                            Create your account
+                                                </h3>
+                                                <br />
+                                                <div
+                                                            className="form-group"
+                                                >
+                                                            <label>
+                                                                        User Name
+                                                            </label>
+                                                            <input
+                                                                        className="form-control"
+                                                                        name="UserName"
+                                                                        onChange={[Function]}
+                                                                        placeholder="User Name"
+                                                                        required={true}
+                                                                        type="text"
+                                                            />
+                                                </div>
+                                                <div
+                                                            className="form-group"
+                                                >
+                                                            <label>
+                                                                        Email
+                                                            </label>
+                                                            <input
+                                                                        className="form-control"
+                                                                        name="Email"
+                                                                        onChange={[Function]}
+                                                                        placeholder="Email Address"
+                                                                        required={true}
+                                                                        type="email"
+                                                            />
+                                                </div>
+                                                <div
+                                                            className="form-group"
+                                                >
+                                                            <label>
+                                                                        Password
+                                                            </label>
+                                                            <input
+                                                                        className="form-control"
+                                                                        name="Password"
+                                                                        onChange={[Function]}
+                                                                        placeholder="Password"
+                                                                        required={true}
+                                                                        type="password"
+                                                            />
+                                                </div>
+                                                <br />
+                                                <br />
+                                                <div>
+                                                            <input
+                                                                        className="mybtn signup_button"
+                                                                        style={
+                                                                                    Object {
+                                                                                                "width": "100%",
+                                                                                              }
+                                                                        }
+                                                                        type="submit"
+                                                                        value="Create your account"
+                                                            />
+                                                </div>
+                                                <br />
+                                                <div
+                                                            className="mydiv"
+                                                >
+                                                            <span
+                                                                        className="myspan"
+                                                            >
+                                                                        or
+                                                            </span>
+                                                </div>
+                                                <br />
+                                                <div>
+                                                            <button
+                                                                        className="mybtn facebook_button"
+                                                            >
+                                                                        Continue with Facebook
+                                                            </button>
+                                                </div>
+                                                <br />
+                                                <div>
+                                                            <button
+                                                                        className="mybtn google_button"
+                                                            >
+                                                                        Continue with Google
+                                                            </button>
+                                                </div>
+                                                <br />
+                                                <h4>
+                                                             Have an account? 
+                                                            <a
+                                                                        className="bg-default"
+                                                                        href="/BuyerLogin"
+                                                            >
+                                                                        Sign in
+                                                            </a>
+                                                </h4>
+                                                <br />
+                                                <br />
+                                    </div>
+                        </form>
+            </div>
+</div>,
+          "className": "center test-buyer-login",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="col-sm-6 col-sm-offset-6"
+              style={
+                            Object {
+                                          "left": "0px",
+                                        }
+              }
+>
+              <form
+                            autoComplete="off"
+                            method="post"
+                            onSubmit={[Function]}
+              >
+                            <div
+                                          className="login-form"
+                            >
+                                          <h3>
+                                                        Create your account
+                                          </h3>
+                                          <br />
+                                          <div
+                                                        className="form-group"
+                                          >
+                                                        <label>
+                                                                      User Name
+                                                        </label>
+                                                        <input
+                                                                      className="form-control"
+                                                                      name="UserName"
+                                                                      onChange={[Function]}
+                                                                      placeholder="User Name"
+                                                                      required={true}
+                                                                      type="text"
+                                                        />
+                                          </div>
+                                          <div
+                                                        className="form-group"
+                                          >
+                                                        <label>
+                                                                      Email
+                                                        </label>
+                                                        <input
+                                                                      className="form-control"
+                                                                      name="Email"
+                                                                      onChange={[Function]}
+                                                                      placeholder="Email Address"
+                                                                      required={true}
+                                                                      type="email"
+                                                        />
+                                          </div>
+                                          <div
+                                                        className="form-group"
+                                          >
+                                                        <label>
+                                                                      Password
+                                                        </label>
+                                                        <input
+                                                                      className="form-control"
+                                                                      name="Password"
+                                                                      onChange={[Function]}
+                                                                      placeholder="Password"
+                                                                      required={true}
+                                                                      type="password"
+                                                        />
+                                          </div>
+                                          <br />
+                                          <br />
+                                          <div>
+                                                        <input
+                                                                      className="mybtn signup_button"
+                                                                      style={
+                                                                                    Object {
+                                                                                                  "width": "100%",
+                                                                                                }
+                                                                      }
+                                                                      type="submit"
+                                                                      value="Create your account"
+                                                        />
+                                          </div>
+                                          <br />
+                                          <div
+                                                        className="mydiv"
+                                          >
+                                                        <span
+                                                                      className="myspan"
+                                                        >
+                                                                      or
+                                                        </span>
+                                          </div>
+                                          <br />
+                                          <div>
+                                                        <button
+                                                                      className="mybtn facebook_button"
+                                                        >
+                                                                      Continue with Facebook
+                                                        </button>
+                                          </div>
+                                          <br />
+                                          <div>
+                                                        <button
+                                                                      className="mybtn google_button"
+                                                        >
+                                                                      Continue with Google
+                                                        </button>
+                                          </div>
+                                          <br />
+                                          <h4>
+                                                         Have an account? 
+                                                        <a
+                                                                      className="bg-default"
+                                                                      href="/BuyerLogin"
+                                                        >
+                                                                      Sign in
+                                                        </a>
+                                          </h4>
+                                          <br />
+                                          <br />
+                            </div>
+              </form>
+</div>,
+            "className": "container",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <form
+                autoComplete="off"
+                method="post"
+                onSubmit={[Function]}
+>
+                <div
+                                className="login-form"
+                >
+                                <h3>
+                                                Create your account
+                                </h3>
+                                <br />
+                                <div
+                                                className="form-group"
+                                >
+                                                <label>
+                                                                User Name
+                                                </label>
+                                                <input
+                                                                className="form-control"
+                                                                name="UserName"
+                                                                onChange={[Function]}
+                                                                placeholder="User Name"
+                                                                required={true}
+                                                                type="text"
+                                                />
+                                </div>
+                                <div
+                                                className="form-group"
+                                >
+                                                <label>
+                                                                Email
+                                                </label>
+                                                <input
+                                                                className="form-control"
+                                                                name="Email"
+                                                                onChange={[Function]}
+                                                                placeholder="Email Address"
+                                                                required={true}
+                                                                type="email"
+                                                />
+                                </div>
+                                <div
+                                                className="form-group"
+                                >
+                                                <label>
+                                                                Password
+                                                </label>
+                                                <input
+                                                                className="form-control"
+                                                                name="Password"
+                                                                onChange={[Function]}
+                                                                placeholder="Password"
+                                                                required={true}
+                                                                type="password"
+                                                />
+                                </div>
+                                <br />
+                                <br />
+                                <div>
+                                                <input
+                                                                className="mybtn signup_button"
+                                                                style={
+                                                                                Object {
+                                                                                                "width": "100%",
+                                                                                              }
+                                                                }
+                                                                type="submit"
+                                                                value="Create your account"
+                                                />
+                                </div>
+                                <br />
+                                <div
+                                                className="mydiv"
+                                >
+                                                <span
+                                                                className="myspan"
+                                                >
+                                                                or
+                                                </span>
+                                </div>
+                                <br />
+                                <div>
+                                                <button
+                                                                className="mybtn facebook_button"
+                                                >
+                                                                Continue with Facebook
+                                                </button>
+                                </div>
+                                <br />
+                                <div>
+                                                <button
+                                                                className="mybtn google_button"
+                                                >
+                                                                Continue with Google
+                                                </button>
+                                </div>
+                                <br />
+                                <h4>
+                                                 Have an account? 
+                                                <a
+                                                                className="bg-default"
+                                                                href="/BuyerLogin"
+                                                >
+                                                                Sign in
+                                                </a>
+                                </h4>
+                                <br />
+                                <br />
+                </div>
+</form>,
+              "className": "col-sm-6 col-sm-offset-6",
+              "style": Object {
+                "left": "0px",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "autoComplete": "off",
+                "children": <div
+                  className="login-form"
+>
+                  <h3>
+                                    Create your account
+                  </h3>
+                  <br />
+                  <div
+                                    className="form-group"
+                  >
+                                    <label>
+                                                      User Name
+                                    </label>
+                                    <input
+                                                      className="form-control"
+                                                      name="UserName"
+                                                      onChange={[Function]}
+                                                      placeholder="User Name"
+                                                      required={true}
+                                                      type="text"
+                                    />
+                  </div>
+                  <div
+                                    className="form-group"
+                  >
+                                    <label>
+                                                      Email
+                                    </label>
+                                    <input
+                                                      className="form-control"
+                                                      name="Email"
+                                                      onChange={[Function]}
+                                                      placeholder="Email Address"
+                                                      required={true}
+                                                      type="email"
+                                    />
+                  </div>
+                  <div
+                                    className="form-group"
+                  >
+                                    <label>
+                                                      Password
+                                    </label>
+                                    <input
+                                                      className="form-control"
+                                                      name="Password"
+                                                      onChange={[Function]}
+                                                      placeholder="Password"
+                                                      required={true}
+                                                      type="password"
+                                    />
+                  </div>
+                  <br />
+                  <br />
+                  <div>
+                                    <input
+                                                      className="mybtn signup_button"
+                                                      style={
+                                                                        Object {
+                                                                                          "width": "100%",
+                                                                                        }
+                                                      }
+                                                      type="submit"
+                                                      value="Create your account"
+                                    />
+                  </div>
+                  <br />
+                  <div
+                                    className="mydiv"
+                  >
+                                    <span
+                                                      className="myspan"
+                                    >
+                                                      or
+                                    </span>
+                  </div>
+                  <br />
+                  <div>
+                                    <button
+                                                      className="mybtn facebook_button"
+                                    >
+                                                      Continue with Facebook
+                                    </button>
+                  </div>
+                  <br />
+                  <div>
+                                    <button
+                                                      className="mybtn google_button"
+                                    >
+                                                      Continue with Google
+                                    </button>
+                  </div>
+                  <br />
+                  <h4>
+                                     Have an account? 
+                                    <a
+                                                      className="bg-default"
+                                                      href="/BuyerLogin"
+                                    >
+                                                      Sign in
+                                    </a>
+                  </h4>
+                  <br />
+                  <br />
+</div>,
+                "method": "post",
+                "onSubmit": [Function],
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <h3>
+                      Create your account
+</h3>,
+                    <br />,
+                    <div
+                      className="form-group"
+>
+                      <label>
+                                            User Name
+                      </label>
+                      <input
+                                            className="form-control"
+                                            name="UserName"
+                                            onChange={[Function]}
+                                            placeholder="User Name"
+                                            required={true}
+                                            type="text"
+                      />
+</div>,
+                    <div
+                      className="form-group"
+>
+                      <label>
+                                            Email
+                      </label>
+                      <input
+                                            className="form-control"
+                                            name="Email"
+                                            onChange={[Function]}
+                                            placeholder="Email Address"
+                                            required={true}
+                                            type="email"
+                      />
+</div>,
+                    <div
+                      className="form-group"
+>
+                      <label>
+                                            Password
+                      </label>
+                      <input
+                                            className="form-control"
+                                            name="Password"
+                                            onChange={[Function]}
+                                            placeholder="Password"
+                                            required={true}
+                                            type="password"
+                      />
+</div>,
+                    <br />,
+                    <br />,
+                    <div>
+                      <input
+                                            className="mybtn signup_button"
+                                            style={
+                                                                  Object {
+                                                                                        "width": "100%",
+                                                                                      }
+                                            }
+                                            type="submit"
+                                            value="Create your account"
+                      />
+</div>,
+                    <br />,
+                    <div
+                      className="mydiv"
+>
+                      <span
+                                            className="myspan"
+                      >
+                                            or
+                      </span>
+</div>,
+                    <br />,
+                    <div>
+                      <button
+                                            className="mybtn facebook_button"
+                      >
+                                            Continue with Facebook
+                      </button>
+</div>,
+                    <br />,
+                    <div>
+                      <button
+                                            className="mybtn google_button"
+                      >
+                                            Continue with Google
+                      </button>
+</div>,
+                    <br />,
+                    <h4>
+                       Have an account? 
+                      <a
+                                            className="bg-default"
+                                            href="/BuyerLogin"
+                      >
+                                            Sign in
+                      </a>
+</h4>,
+                    <br />,
+                    <br />,
+                  ],
+                  "className": "login-form",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Create your account",
+                    },
+                    "ref": null,
+                    "rendered": "Create your account",
+                    "type": "h3",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": "br",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <label>
+                          User Name
+</label>,
+                        <input
+                          className="form-control"
+                          name="UserName"
+                          onChange={[Function]}
+                          placeholder="User Name"
+                          required={true}
+                          type="text"
+/>,
+                      ],
+                      "className": "form-group",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "User Name",
+                        },
+                        "ref": null,
+                        "rendered": "User Name",
+                        "type": "label",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "className": "form-control",
+                          "name": "UserName",
+                          "onChange": [Function],
+                          "placeholder": "User Name",
+                          "required": true,
+                          "type": "text",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "input",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <label>
+                          Email
+</label>,
+                        <input
+                          className="form-control"
+                          name="Email"
+                          onChange={[Function]}
+                          placeholder="Email Address"
+                          required={true}
+                          type="email"
+/>,
+                      ],
+                      "className": "form-group",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Email",
+                        },
+                        "ref": null,
+                        "rendered": "Email",
+                        "type": "label",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "className": "form-control",
+                          "name": "Email",
+                          "onChange": [Function],
+                          "placeholder": "Email Address",
+                          "required": true,
+                          "type": "email",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "input",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <label>
+                          Password
+</label>,
+                        <input
+                          className="form-control"
+                          name="Password"
+                          onChange={[Function]}
+                          placeholder="Password"
+                          required={true}
+                          type="password"
+/>,
+                      ],
+                      "className": "form-group",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Password",
+                        },
+                        "ref": null,
+                        "rendered": "Password",
+                        "type": "label",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "className": "form-control",
+                          "name": "Password",
+                          "onChange": [Function],
+                          "placeholder": "Password",
+                          "required": true,
+                          "type": "password",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "input",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": "br",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": "br",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <input
+                        className="mybtn signup_button"
+                        style={
+                                                Object {
+                                                                        "width": "100%",
+                                                                      }
+                        }
+                        type="submit"
+                        value="Create your account"
+/>,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "mybtn signup_button",
+                        "style": Object {
+                          "width": "100%",
+                        },
+                        "type": "submit",
+                        "value": "Create your account",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "input",
+                    },
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": "br",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <span
+                        className="myspan"
+>
+                        or
+</span>,
+                      "className": "mydiv",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "or",
+                        "className": "myspan",
+                      },
+                      "ref": null,
+                      "rendered": "or",
+                      "type": "span",
+                    },
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": "br",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <button
+                        className="mybtn facebook_button"
+>
+                        Continue with Facebook
+</button>,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Continue with Facebook",
+                        "className": "mybtn facebook_button",
+                      },
+                      "ref": null,
+                      "rendered": "Continue with Facebook",
+                      "type": "button",
+                    },
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": "br",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <button
+                        className="mybtn google_button"
+>
+                        Continue with Google
+</button>,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Continue with Google",
+                        "className": "mybtn google_button",
+                      },
+                      "ref": null,
+                      "rendered": "Continue with Google",
+                      "type": "button",
+                    },
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": "br",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        " Have an account? ",
+                        <a
+                          className="bg-default"
+                          href="/BuyerLogin"
+>
+                          Sign in
+</a>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      " Have an account? ",
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Sign in",
+                          "className": "bg-default",
+                          "href": "/BuyerLogin",
+                        },
+                        "ref": null,
+                        "rendered": "Sign in",
+                        "type": "a",
+                      },
+                    ],
+                    "type": "h4",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": "br",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": "br",
+                  },
+                ],
+                "type": "div",
+              },
+              "type": "form",
+            },
+            "type": "div",
+          },
+          "type": "div",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": "br",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <nav
+            className="navbar"
+>
+            <div
+                        className="container-fluid"
+            >
+                        <div
+                                    className="navbar-header"
+                        >
+                                    <a
+                                                className="navbar-brand"
+                                                href="/Buyerlogin"
+                                    >
+                                                GRUBHUB
+                                    </a>
+                        </div>
+            </div>
+</nav>,
+          <div
+            className="center test-buyer-login"
+>
+            <div
+                        className="container"
+            >
+                        <div
+                                    className="col-sm-6 col-sm-offset-6"
+                                    style={
+                                                Object {
+                                                            "left": "0px",
+                                                          }
+                                    }
+                        >
+                                    <form
+                                                autoComplete="off"
+                                                method="post"
+                                                onSubmit={[Function]}
+                                    >
+                                                <div
+                                                            className="login-form"
+                                                >
+                                                            <h3>
+                                                                        Create your account
+                                                            </h3>
+                                                            <br />
+                                                            <div
+                                                                        className="form-group"
+                                                            >
+                                                                        <label>
+                                                                                    User Name
+                                                                        </label>
+                                                                        <input
+                                                                                    className="form-control"
+                                                                                    name="UserName"
+                                                                                    onChange={[Function]}
+                                                                                    placeholder="User Name"
+                                                                                    required={true}
+                                                                                    type="text"
+                                                                        />
+                                                            </div>
+                                                            <div
+                                                                        className="form-group"
+                                                            >
+                                                                        <label>
+                                                                                    Email
+                                                                        </label>
+                                                                        <input
+                                                                                    className="form-control"
+                                                                                    name="Email"
+                                                                                    onChange={[Function]}
+                                                                                    placeholder="Email Address"
+                                                                                    required={true}
+                                                                                    type="email"
+                                                                        />
+                                                            </div>
+                                                            <div
+                                                                        className="form-group"
+                                                            >
+                                                                        <label>
+                                                                                    Password
+                                                                        </label>
+                                                                        <input
+                                                                                    className="form-control"
+                                                                                    name="Password"
+                                                                                    onChange={[Function]}
+                                                                                    placeholder="Password"
+                                                                                    required={true}
+                                                                                    type="password"
+                                                                        />
+                                                            </div>
+                                                            <br />
+                                                            <br />
+                                                            <div>
+                                                                        <input
+                                                                                    className="mybtn signup_button"
+                                                                                    style={
+                                                                                                Object {
+                                                                                                            "width": "100%",
+                                                                                                          }
+                                                                                    }
+                                                                                    type="submit"
+                                                                                    value="Create your account"
+                                                                        />
+                                                            </div>
+                                                            <br />
+                                                            <div
+                                                                        className="mydiv"
+                                                            >
+                                                                        <span
+                                                                                    className="myspan"
+                                                                        >
+                                                                                    or
+                                                                        </span>
+                                                            </div>
+                                                            <br />
+                                                            <div>
+                                                                        <button
+                                                                                    className="mybtn facebook_button"
+                                                                        >
+                                                                                    Continue with Facebook
+                                                                        </button>
+                                                            </div>
+                                                            <br />
+                                                            <div>
+                                                                        <button
+                                                                                    className="mybtn google_button"
+                                                                        >
+                                                                                    Continue with Google
+                                                                        </button>
+                                                            </div>
+                                                            <br />
+                                                            <h4>
+                                                                         Have an account? 
+                                                                        <a
+                                                                                    className="bg-default"
+                                                                                    href="/BuyerLogin"
+                                                                        >
+                                                                                    Sign in
+                                                                        </a>
+                                                            </h4>
+                                                            <br />
+                                                            <br />
+                                                </div>
+                                    </form>
+                        </div>
+            </div>
+</div>,
+          <br />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="container-fluid"
+>
+              <div
+                            className="navbar-header"
+              >
+                            <a
+                                          className="navbar-brand"
+                                          href="/Buyerlogin"
+                            >
+                                          GRUBHUB
+                            </a>
+              </div>
+</div>,
+            "className": "navbar",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <div
+                className="navbar-header"
+>
+                <a
+                                className="navbar-brand"
+                                href="/Buyerlogin"
+                >
+                                GRUBHUB
+                </a>
+</div>,
+              "className": "container-fluid",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <a
+                  className="navbar-brand"
+                  href="/Buyerlogin"
+>
+                  GRUBHUB
+</a>,
+                "className": "navbar-header",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "GRUBHUB",
+                  "className": "navbar-brand",
+                  "href": "/Buyerlogin",
+                },
+                "ref": null,
+                "rendered": "GRUBHUB",
+                "type": "a",
+              },
+              "type": "div",
+            },
+            "type": "div",
+          },
+          "type": "nav",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="container"
+>
+              <div
+                            className="col-sm-6 col-sm-offset-6"
+                            style={
+                                          Object {
+                                                        "left": "0px",
+                                                      }
+                            }
+              >
+                            <form
+                                          autoComplete="off"
+                                          method="post"
+                                          onSubmit={[Function]}
+                            >
+                                          <div
+                                                        className="login-form"
+                                          >
+                                                        <h3>
+                                                                      Create your account
+                                                        </h3>
+                                                        <br />
+                                                        <div
+                                                                      className="form-group"
+                                                        >
+                                                                      <label>
+                                                                                    User Name
+                                                                      </label>
+                                                                      <input
+                                                                                    className="form-control"
+                                                                                    name="UserName"
+                                                                                    onChange={[Function]}
+                                                                                    placeholder="User Name"
+                                                                                    required={true}
+                                                                                    type="text"
+                                                                      />
+                                                        </div>
+                                                        <div
+                                                                      className="form-group"
+                                                        >
+                                                                      <label>
+                                                                                    Email
+                                                                      </label>
+                                                                      <input
+                                                                                    className="form-control"
+                                                                                    name="Email"
+                                                                                    onChange={[Function]}
+                                                                                    placeholder="Email Address"
+                                                                                    required={true}
+                                                                                    type="email"
+                                                                      />
+                                                        </div>
+                                                        <div
+                                                                      className="form-group"
+                                                        >
+                                                                      <label>
+                                                                                    Password
+                                                                      </label>
+                                                                      <input
+                                                                                    className="form-control"
+                                                                                    name="Password"
+                                                                                    onChange={[Function]}
+                                                                                    placeholder="Password"
+                                                                                    required={true}
+                                                                                    type="password"
+                                                                      />
+                                                        </div>
+                                                        <br />
+                                                        <br />
+                                                        <div>
+                                                                      <input
+                                                                                    className="mybtn signup_button"
+                                                                                    style={
+                                                                                                  Object {
+                                                                                                                "width": "100%",
+                                                                                                              }
+                                                                                    }
+                                                                                    type="submit"
+                                                                                    value="Create your account"
+                                                                      />
+                                                        </div>
+                                                        <br />
+                                                        <div
+                                                                      className="mydiv"
+                                                        >
+                                                                      <span
+                                                                                    className="myspan"
+                                                                      >
+                                                                                    or
+                                                                      </span>
+                                                        </div>
+                                                        <br />
+                                                        <div>
+                                                                      <button
+                                                                                    className="mybtn facebook_button"
+                                                                      >
+                                                                                    Continue with Facebook
+                                                                      </button>
+                                                        </div>
+                                                        <br />
+                                                        <div>
+                                                                      <button
+                                                                                    className="mybtn google_button"
+                                                                      >
+                                                                                    Continue with Google
+                                                                      </button>
+                                                        </div>
+                                                        <br />
+                                                        <h4>
+                                                                       Have an account? 
+                                                                      <a
+                                                                                    className="bg-default"
+                                                                                    href="/BuyerLogin"
+                                                                      >
+                                                                                    Sign in
+                                                                      </a>
+                                                        </h4>
+                                                        <br />
+                                                        <br />
+                                          </div>
+                            </form>
+              </div>
+</div>,
+            "className": "center test-buyer-login",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <div
+                className="col-sm-6 col-sm-offset-6"
+                style={
+                                Object {
+                                                "left": "0px",
+                                              }
+                }
+>
+                <form
+                                autoComplete="off"
+                                method="post"
+                                onSubmit={[Function]}
+                >
+                                <div
+                                                className="login-form"
+                                >
+                                                <h3>
+                                                                Create your account
+                                                </h3>
+                                                <br />
+                                                <div
+                                                                className="form-group"
+                                                >
+                                                                <label>
+                                                                                User Name
+                                                                </label>
+                                                                <input
+                                                                                className="form-control"
+                                                                                name="UserName"
+                                                                                onChange={[Function]}
+                                                                                placeholder="User Name"
+                                                                                required={true}
+                                                                                type="text"
+                                                                />
+                                                </div>
+                                                <div
+                                                                className="form-group"
+                                                >
+                                                                <label>
+                                                                                Email
+                                                                </label>
+                                                                <input
+                                                                                className="form-control"
+                                                                                name="Email"
+                                                                                onChange={[Function]}
+                                                                                placeholder="Email Address"
+                                                                                required={true}
+                                                                                type="email"
+                                                                />
+                                                </div>
+                                                <div
+                                                                className="form-group"
+                                                >
+                                                                <label>
+                                                                                Password
+                                                                </label>
+                                                                <input
+                                                                                className="form-control"
+                                                                                name="Password"
+                                                                                onChange={[Function]}
+                                                                                placeholder="Password"
+                                                                                required={true}
+                                                                                type="password"
+                                                                />
+                                                </div>
+                                                <br />
+                                                <br />
+                                                <div>
+                                                                <input
+                                                                                className="mybtn signup_button"
+                                                                                style={
+                                                                                                Object {
+                                                                                                                "width": "100%",
+                                                                                                              }
+                                                                                }
+                                                                                type="submit"
+                                                                                value="Create your account"
+                                                                />
+                                                </div>
+                                                <br />
+                                                <div
+                                                                className="mydiv"
+                                                >
+                                                                <span
+                                                                                className="myspan"
+                                                                >
+                                                                                or
+                                                                </span>
+                                                </div>
+                                                <br />
+                                                <div>
+                                                                <button
+                                                                                className="mybtn facebook_button"
+                                                                >
+                                                                                Continue with Facebook
+                                                                </button>
+                                                </div>
+                                                <br />
+                                                <div>
+                                                                <button
+                                                                                className="mybtn google_button"
+                                                                >
+                                                                                Continue with Google
+                                                                </button>
+                                                </div>
+                                                <br />
+                                                <h4>
+                                                                 Have an account? 
+                                                                <a
+                                                                                className="bg-default"
+                                                                                href="/BuyerLogin"
+                                                                >
+                                                                                Sign in
+                                                                </a>
+                                                </h4>
+                                                <br />
+                                                <br />
+                                </div>
+                </form>
+</div>,
+              "className": "container",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <form
+                  autoComplete="off"
+                  method="post"
+                  onSubmit={[Function]}
+>
+                  <div
+                                    className="login-form"
+                  >
+                                    <h3>
+                                                      Create your account
+                                    </h3>
+                                    <br />
+                                    <div
+                                                      className="form-group"
+                                    >
+                                                      <label>
+                                                                        User Name
+                                                      </label>
+                                                      <input
+                                                                        className="form-control"
+                                                                        name="UserName"
+                                                                        onChange={[Function]}
+                                                                        placeholder="User Name"
+                                                                        required={true}
+                                                                        type="text"
+                                                      />
+                                    </div>
+                                    <div
+                                                      className="form-group"
+                                    >
+                                                      <label>
+                                                                        Email
+                                                      </label>
+                                                      <input
+                                                                        className="form-control"
+                                                                        name="Email"
+                                                                        onChange={[Function]}
+                                                                        placeholder="Email Address"
+                                                                        required={true}
+                                                                        type="email"
+                                                      />
+                                    </div>
+                                    <div
+                                                      className="form-group"
+                                    >
+                                                      <label>
+                                                                        Password
+                                                      </label>
+                                                      <input
+                                                                        className="form-control"
+                                                                        name="Password"
+                                                                        onChange={[Function]}
+                                                                        placeholder="Password"
+                                                                        required={true}
+                                                                        type="password"
+                                                      />
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div>
+                                                      <input
+                                                                        className="mybtn signup_button"
+                                                                        style={
+                                                                                          Object {
+                                                                                                            "width": "100%",
+                                                                                                          }
+                                                                        }
+                                                                        type="submit"
+                                                                        value="Create your account"
+                                                      />
+                                    </div>
+                                    <br />
+                                    <div
+                                                      className="mydiv"
+                                    >
+                                                      <span
+                                                                        className="myspan"
+                                                      >
+                                                                        or
+                                                      </span>
+                                    </div>
+                                    <br />
+                                    <div>
+                                                      <button
+                                                                        className="mybtn facebook_button"
+                                                      >
+                                                                        Continue with Facebook
+                                                      </button>
+                                    </div>
+                                    <br />
+                                    <div>
+                                                      <button
+                                                                        className="mybtn google_button"
+                                                      >
+                                                                        Continue with Google
+                                                      </button>
+                                    </div>
+                                    <br />
+                                    <h4>
+                                                       Have an account? 
+                                                      <a
+                                                                        className="bg-default"
+                                                                        href="/BuyerLogin"
+                                                      >
+                                                                        Sign in
+                                                      </a>
+                                    </h4>
+                                    <br />
+                                    <br />
+                  </div>
+</form>,
+                "className": "col-sm-6 col-sm-offset-6",
+                "style": Object {
+                  "left": "0px",
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "autoComplete": "off",
+                  "children": <div
+                    className="login-form"
+>
+                    <h3>
+                                        Create your account
+                    </h3>
+                    <br />
+                    <div
+                                        className="form-group"
+                    >
+                                        <label>
+                                                            User Name
+                                        </label>
+                                        <input
+                                                            className="form-control"
+                                                            name="UserName"
+                                                            onChange={[Function]}
+                                                            placeholder="User Name"
+                                                            required={true}
+                                                            type="text"
+                                        />
+                    </div>
+                    <div
+                                        className="form-group"
+                    >
+                                        <label>
+                                                            Email
+                                        </label>
+                                        <input
+                                                            className="form-control"
+                                                            name="Email"
+                                                            onChange={[Function]}
+                                                            placeholder="Email Address"
+                                                            required={true}
+                                                            type="email"
+                                        />
+                    </div>
+                    <div
+                                        className="form-group"
+                    >
+                                        <label>
+                                                            Password
+                                        </label>
+                                        <input
+                                                            className="form-control"
+                                                            name="Password"
+                                                            onChange={[Function]}
+                                                            placeholder="Password"
+                                                            required={true}
+                                                            type="password"
+                                        />
+                    </div>
+                    <br />
+                    <br />
+                    <div>
+                                        <input
+                                                            className="mybtn signup_button"
+                                                            style={
+                                                                                Object {
+                                                                                                    "width": "100%",
+                                                                                                  }
+                                                            }
+                                                            type="submit"
+                                                            value="Create your account"
+                                        />
+                    </div>
+                    <br />
+                    <div
+                                        className="mydiv"
+                    >
+                                        <span
+                                                            className="myspan"
+                                        >
+                                                            or
+                                        </span>
+                    </div>
+                    <br />
+                    <div>
+                                        <button
+                                                            className="mybtn facebook_button"
+                                        >
+                                                            Continue with Facebook
+                                        </button>
+                    </div>
+                    <br />
+                    <div>
+                                        <button
+                                                            className="mybtn google_button"
+                                        >
+                                                            Continue with Google
+                                        </button>
+                    </div>
+                    <br />
+                    <h4>
+                                         Have an account? 
+                                        <a
+                                                            className="bg-default"
+                                                            href="/BuyerLogin"
+                                        >
+                                                            Sign in
+                                        </a>
+                    </h4>
+                    <br />
+                    <br />
+</div>,
+                  "method": "post",
+                  "onSubmit": [Function],
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <h3>
+                        Create your account
+</h3>,
+                      <br />,
+                      <div
+                        className="form-group"
+>
+                        <label>
+                                                User Name
+                        </label>
+                        <input
+                                                className="form-control"
+                                                name="UserName"
+                                                onChange={[Function]}
+                                                placeholder="User Name"
+                                                required={true}
+                                                type="text"
+                        />
+</div>,
+                      <div
+                        className="form-group"
+>
+                        <label>
+                                                Email
+                        </label>
+                        <input
+                                                className="form-control"
+                                                name="Email"
+                                                onChange={[Function]}
+                                                placeholder="Email Address"
+                                                required={true}
+                                                type="email"
+                        />
+</div>,
+                      <div
+                        className="form-group"
+>
+                        <label>
+                                                Password
+                        </label>
+                        <input
+                                                className="form-control"
+                                                name="Password"
+                                                onChange={[Function]}
+                                                placeholder="Password"
+                                                required={true}
+                                                type="password"
+                        />
+</div>,
+                      <br />,
+                      <br />,
+                      <div>
+                        <input
+                                                className="mybtn signup_button"
+                                                style={
+                                                                        Object {
+                                                                                                "width": "100%",
+                                                                                              }
+                                                }
+                                                type="submit"
+                                                value="Create your account"
+                        />
+</div>,
+                      <br />,
+                      <div
+                        className="mydiv"
+>
+                        <span
+                                                className="myspan"
+                        >
+                                                or
+                        </span>
+</div>,
+                      <br />,
+                      <div>
+                        <button
+                                                className="mybtn facebook_button"
+                        >
+                                                Continue with Facebook
+                        </button>
+</div>,
+                      <br />,
+                      <div>
+                        <button
+                                                className="mybtn google_button"
+                        >
+                                                Continue with Google
+                        </button>
+</div>,
+                      <br />,
+                      <h4>
+                         Have an account? 
+                        <a
+                                                className="bg-default"
+                                                href="/BuyerLogin"
+                        >
+                                                Sign in
+                        </a>
+</h4>,
+                      <br />,
+                      <br />,
+                    ],
+                    "className": "login-form",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Create your account",
+                      },
+                      "ref": null,
+                      "rendered": "Create your account",
+                      "type": "h3",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": "br",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <label>
+                            User Name
+</label>,
+                          <input
+                            className="form-control"
+                            name="UserName"
+                            onChange={[Function]}
+                            placeholder="User Name"
+                            required={true}
+                            type="text"
+/>,
+                        ],
+                        "className": "form-group",
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "User Name",
+                          },
+                          "ref": null,
+                          "rendered": "User Name",
+                          "type": "label",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "className": "form-control",
+                            "name": "UserName",
+                            "onChange": [Function],
+                            "placeholder": "User Name",
+                            "required": true,
+                            "type": "text",
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": "input",
+                        },
+                      ],
+                      "type": "div",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <label>
+                            Email
+</label>,
+                          <input
+                            className="form-control"
+                            name="Email"
+                            onChange={[Function]}
+                            placeholder="Email Address"
+                            required={true}
+                            type="email"
+/>,
+                        ],
+                        "className": "form-group",
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Email",
+                          },
+                          "ref": null,
+                          "rendered": "Email",
+                          "type": "label",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "className": "form-control",
+                            "name": "Email",
+                            "onChange": [Function],
+                            "placeholder": "Email Address",
+                            "required": true,
+                            "type": "email",
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": "input",
+                        },
+                      ],
+                      "type": "div",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <label>
+                            Password
+</label>,
+                          <input
+                            className="form-control"
+                            name="Password"
+                            onChange={[Function]}
+                            placeholder="Password"
+                            required={true}
+                            type="password"
+/>,
+                        ],
+                        "className": "form-group",
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Password",
+                          },
+                          "ref": null,
+                          "rendered": "Password",
+                          "type": "label",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "className": "form-control",
+                            "name": "Password",
+                            "onChange": [Function],
+                            "placeholder": "Password",
+                            "required": true,
+                            "type": "password",
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": "input",
+                        },
+                      ],
+                      "type": "div",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": "br",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": "br",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <input
+                          className="mybtn signup_button"
+                          style={
+                                                    Object {
+                                                                              "width": "100%",
+                                                                            }
+                          }
+                          type="submit"
+                          value="Create your account"
+/>,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "className": "mybtn signup_button",
+                          "style": Object {
+                            "width": "100%",
+                          },
+                          "type": "submit",
+                          "value": "Create your account",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "input",
+                      },
+                      "type": "div",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": "br",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <span
+                          className="myspan"
+>
+                          or
+</span>,
+                        "className": "mydiv",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "or",
+                          "className": "myspan",
+                        },
+                        "ref": null,
+                        "rendered": "or",
+                        "type": "span",
+                      },
+                      "type": "div",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": "br",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <button
+                          className="mybtn facebook_button"
+>
+                          Continue with Facebook
+</button>,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Continue with Facebook",
+                          "className": "mybtn facebook_button",
+                        },
+                        "ref": null,
+                        "rendered": "Continue with Facebook",
+                        "type": "button",
+                      },
+                      "type": "div",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": "br",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <button
+                          className="mybtn google_button"
+>
+                          Continue with Google
+</button>,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Continue with Google",
+                          "className": "mybtn google_button",
+                        },
+                        "ref": null,
+                        "rendered": "Continue with Google",
+                        "type": "button",
+                      },
+                      "type": "div",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": "br",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          " Have an account? ",
+                          <a
+                            className="bg-default"
+                            href="/BuyerLogin"
+>
+                            Sign in
+</a>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        " Have an account? ",
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Sign in",
+                            "className": "bg-default",
+                            "href": "/BuyerLogin",
+                          },
+                          "ref": null,
+                          "rendered": "Sign in",
+                          "type": "a",
+                        },
+                      ],
+                      "type": "h4",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": "br",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": "br",
+                    },
+                  ],
+                  "type": "div",
+                },
+                "type": "form",
+              },
+              "type": "div",
+            },
+            "type": "div",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": "br",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    Symbol(enzyme.__providerValues__): undefined,
+  },
+  Symbol(enzyme.__providerValues__): Map {},
+  Symbol(enzyme.__childContext__): null,
+}
+`;
