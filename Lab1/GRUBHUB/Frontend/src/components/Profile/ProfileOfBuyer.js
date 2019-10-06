@@ -5,7 +5,7 @@ import axios from 'axios';
 import './ProfileOfBuyer.css';
 import { Link } from 'react-router-dom';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-const sha1 = require('sha1');
+import validator from 'validator';
 
 class ProfileOfBuyer extends Component {
     constructor() {
@@ -33,7 +33,8 @@ class ProfileOfBuyer extends Component {
             showUpcomingOrders: [],
             Address: "",
             Original_Address: true,
-            update_Address:false
+            update_Address:false,
+            PhoneNumberError:""
         }
     }
     updateProfileName = (e) => {
@@ -45,7 +46,7 @@ class ProfileOfBuyer extends Component {
             Name: this.state.Name,
             UserID: userID
         }
-        
+        console.log('Data: ', data);
         axios.post('http://localhost:5000/updateUserName', data)
             .then(response => {
                 if (response.status === 200) {
@@ -72,11 +73,21 @@ class ProfileOfBuyer extends Component {
             PhoneNumber: this.state.PhoneNumber,
             UserID: userID
         }
-        
+        console.log('Data: ', data);
+        if(!validator.isMobilePhone(this.state.PhoneNumber))
+        {
+            this.setState(
+                {
+                    PhoneNumberError:"Not in Correct Format!!"
+                }
+            )
+        }
+        else
+        {
         axios.post('http://localhost:5000/updatePhoneNumber', data)
             .then(response => {
                 if (response.status === 200) {
-                    
+                    console.log('Updated the profile');
                     this.setState(
                         {
                             Original_PhoneNumber: true,
@@ -91,6 +102,8 @@ class ProfileOfBuyer extends Component {
                     })
                 }
             });
+
+        }
     }
     updateAddress=(e)=>
     {
@@ -101,7 +114,7 @@ class ProfileOfBuyer extends Component {
             Address: this.state.Address,
             UserID: userID
         }
-        
+        console.log('Data: ', data);
         axios.post('http://localhost:5000/updateAddress', data)
             .then(response => {
                 if (response.status === 200) {
@@ -130,11 +143,11 @@ class ProfileOfBuyer extends Component {
             ProfileImage: this.state.ProfileImage,
             UserID: userID
         }
-        
+        console.log('Data: ', data);
         axios.post('http://localhost:5000/updateProfileImage', data)
             .then(response => {
                 if (response.status === 200) {
-                    
+                    console.log('Updated the profile');
                     this.setState(
                         {
                             Original_ProfileImage: true,
@@ -159,7 +172,7 @@ class ProfileOfBuyer extends Component {
             Email: this.state.Email,
             UserID: userID
         }
-       
+        console.log('Data: ', data);
         axios.post('http://localhost:5000/updateEmail', data)
             .then(response => {
                 if (response.status === 200) {
@@ -182,7 +195,7 @@ class ProfileOfBuyer extends Component {
     handleChange = (e) => {
 
         if (e.target.name === "ProfileImage") {
-            
+            console.log(e.target.files);
             var profilePhoto = e.target.files[0];
             var data = new FormData();
             data.append('photos', profilePhoto);
@@ -190,7 +203,8 @@ class ProfileOfBuyer extends Component {
             axios.post('http://localhost:5000/upload-file', data)
                 .then(response => {
                     if (response.status === 200) {
-                        
+                        console.log('Profile Photo Name: ', profilePhoto.name);
+                        //Download image
                         axios.post('http://localhost:5000/download-file/' + profilePhoto.name)
                             .then(response => {
                                 let imagePreview = 'data:image/jpg;base64, ' + response.data;
@@ -290,7 +304,7 @@ class ProfileOfBuyer extends Component {
         }
         let navLogin = null;
         if (cookie.load('cookie1') === "Buyer") {
-            
+            console.log("Able to read cookie, in buyer");
             navLogin = (
                 <div>
 
@@ -422,7 +436,7 @@ class ProfileOfBuyer extends Component {
                                     <p>{this.state.ProfileImage}</p>
                                 </div>
                                 <div className="rightsidebutton">
-                                    <p onClick={updateImage}> <Link to="/ProfileOfBuyer">Edit</Link></p>
+                                    <p className="testing" onClick={updateImage}> <Link to="/ProfileOfBuyer">Edit</Link></p>
                                 </div>
                             </div>
                         </li>
@@ -481,12 +495,13 @@ class ProfileOfBuyer extends Component {
                                 </li>
                             </div>}
                             {this.state.update_Email && <div>
-                                <form>
+                                <form onSubmit={this.updateProfileEmail}  method="post" autoComplete="off">
                                     <div className="form-group">
                                         <h4>Edit email</h4>
-                                        <input type="text" name="Email" id="Email" className="form-control form-control-lg" placeholder="Email address" onChange={this.handleChange} value={this.state.Email} />
+                                        <input type="email" name="Email" id="Email" className="form-control form-control-lg" placeholder="Email address" onChange={this.handleChange} value={this.state.Email} />
                                     </div>
-                                    <button onClick={this.updateProfileEmail} className="profilename">Update email</button><br />
+                                    <input type="submit" className="profilename"  value="Update email" />
+                                    <br />
                                     <button className="profileCancel">Cancel</button>
                                     <br />
                                 </form>
@@ -576,7 +591,7 @@ class ProfileOfBuyer extends Component {
                                 <form>
                                     <div className="form-group">
                                         <h4>Edit Phone Number</h4>
-
+                                        <div style={{color:"red"}}>{this.state.PhoneNumberError}</div>
                                         <input type="text" name="PhoneNumber" id="PhoneNumber" className="form-control form-control-lg" placeholder="Phone Number" onChange={this.handleChange} value={this.state.PhoneNumber} />
 
                                     </div>
