@@ -14,7 +14,8 @@ router.post("/addItem",(req,res)=>
     let DescriptionOfItem = req.body.DescriptionOfItem;
     let priceOfItem = req.body.PriceOfItem;
     let SectionName = req.body.SectionName;
-    let ItemImage= req.body.ItemImage
+    let ItemImage= req.body.ItemImage;
+   
    
     addItem= async ()=>
     {
@@ -31,7 +32,7 @@ router.post("/addItem",(req,res)=>
         }
 
       let result= await menuDaoObj.addnewItem(itemObj,restid[0].RestaurantID,section[0].SectionID);
-      
+      console.log("Result is "+result[0]);
       if(result[0])
       {
         res.writeHead(200, {'content-type':'application/json'});
@@ -178,7 +179,7 @@ router.post("/getAllSections",(req,res)=>
     getAllSections= async ()=>
     {
       let restid= await restaurantDaoobj.getRestaurantDetails(userID);
-      
+      console.log("Restaurant id is "+restid[0].RestaurantID);
       let result=await menuDaoObj.getAllSections(restid[0].RestaurantID);
 
           if(result[0])
@@ -208,7 +209,7 @@ router.post("/deleteSection",(req,res)=>
       let restid= await restaurantDaoobj.getRestaurantDetails(userid);
       let sectionid = req.body.sectionid;
       let result=await menuDaoObj.deleteSection(restid[0].RestaurantID,sectionid);
-      
+      console.log("result in delete section is "+result);
       if(result[0])
             {
               res.writeHead(200, {'content-type':'application/json'});
