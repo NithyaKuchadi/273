@@ -16,18 +16,22 @@ router.post("/showOrders", (req, res) => {
     FetchingOrders = async () => {
       let userIDowner = req.body.UserID;
       let order_type = req.body.type;
+
+      console.log("userid owner" + userIDowner);
       let resID = await ordersDaoObj.FetchRestaurantID(userIDowner);
-      
+      console.log("resid owner" + resID);
       let result = await ordersDaoObj.showOrders(resID, order_type);
       let orders = [];
       for (let i = 0; i < result.length; i++) {
         let itemid = result[i].itemsofid;
+
+        console.log("itemid owner" + itemid);
         let userid = result[i].usersofid;
 
         let itemName = await menuDaoObj.FetchItemName(itemid);
         let j = 0;
         let userdetails = await signUpLoginDaoobj.getUserDetails(userid);
-       
+        console.log("User name is" + userdetails[0].UserName);
         let orderdetails = {
           "OrderID": result[i].OrderID,
           "PersonName": userdetails[j].UserName,
@@ -58,7 +62,7 @@ router.post("/showOrders", (req, res) => {
 router.post("/pastOrdersOfUser", (req, res) => {
   try {
     pastOrdersOfUser = async () => {
-      
+      console.log("In past orders");
       let userID = req.body.userID;
       let result = await ordersDaoObj.getPastOrders(userID, "Delivered");
       let pastorders = [];
@@ -70,6 +74,8 @@ router.post("/pastOrdersOfUser", (req, res) => {
           let itemId = result[i].itemsofid;
           let itemDetails = await menuDaoObj.getItemsBasedOnItemID(itemId);
           let itemName = itemDetails[0].NameOfItem;
+          console.log("In past orders restaurant is is" + restaurantid);
+          console.log("restaurant name is " + restaurantName);
           let obj = {
             "OrderID": result[i].OrderID,
             "RestaurantName": restaurantName,
@@ -97,11 +103,11 @@ router.post("/pastOrdersOfUser", (req, res) => {
 router.post("/upcomingOrders", (req, res) => {
   try {
     upcomingOrders = async () => {
-      
+      console.log("In Upcoming orders");
       let userID = req.body.userID;
       let orderStatus = "New"
       let result = await ordersDaoObj.getUpcomingOrders(userID, orderStatus);
-      
+      console.log("ORDERS ARE IN UPCOMING" + result[0].itemsofid);
       let getUpcomingOrders = [];
       if (result[0]) {
         for (let i = 0; i < result.length; i++) {
@@ -136,26 +142,32 @@ router.post("/upcomingOrders", (req, res) => {
 });
 
 router.post("/UpdateOrder", (req, res) => {
-  
+  console.log("is it coming here??");
   try {
     UpdateOrder = async () => {
       let orderID = req.body.id;
       let statusOfOrder = req.body.StatusOfOrder;
-      
+      console.log("Order ID, Status of order" + orderID + statusOfOrder);
       await ordersDaoObj.updateOrder(orderID, statusOfOrder);
 
       let userIDowner = req.body.UserID;
+
+
+      console.log("userid owner" + userIDowner);
       let resID = await ordersDaoObj.FetchRestaurantID(userIDowner);
+      console.log("resid owner" + resID);
       let result1 = await ordersDaoObj.showOrders(resID, "new");
       let orders = [];
       for (let i = 0; i < result1.length; i++) {
         let itemid = result1[i].itemsofid;
+
+        console.log("itemid owner" + itemid);
         let userid = result1[i].usersofid;
 
         let itemName = await menuDaoObj.FetchItemName(itemid);
         let j = 0;
         let userdetails = await signUpLoginDaoobj.getUserDetails(userid);
-        
+        console.log("User name is" + userdetails[0].UserName);
         let orderdetails = {
           "OrderID": result1[i].OrderID,
           "PersonName": userdetails[j].UserName,
@@ -191,18 +203,22 @@ router.post("/CancelOrder", (req, res) => {
       if (r) {
         let userIDowner = req.body.UserID;
         let order_type = "new";
+
+        console.log("userid owner" + userIDowner);
         let resID = await ordersDaoObj.FetchRestaurantID(userIDowner);
-        
+        console.log("resid owner" + resID);
         let result = await ordersDaoObj.showOrders(resID, order_type);
         let orders = [];
         for (let i = 0; i < result.length; i++) {
           let itemid = result[i].itemsofid;
+
+          console.log("itemid owner" + itemid);
           let userid = result[i].usersofid;
 
           let itemName = await menuDaoObj.FetchItemName(itemid);
           let j = 0;
           let userdetails = await signUpLoginDaoobj.getUserDetails(userid);
-          
+          console.log("User name is" + userdetails[0].UserName);
           let orderdetails = {
             "OrderID": result[i].OrderID,
             "PersonName": userdetails[j].UserName,
@@ -232,13 +248,13 @@ router.post("/CancelOrder", (req, res) => {
 });
 
 router.post("/OrderItem", (req, res) => {
-  
+  console.log("IN order items");
   let data = req.body;
-  
+  console.log("data " + data);
   const OrderItem = async () => {
     queryResult = await ordersDaoObj.addnewOrder(data);
     if (queryResult) {
-      
+      console.log("Successfully created");
       res.status(200).json({ responseMessage: 'Successfully Created' });
     }
     else {
@@ -249,7 +265,7 @@ router.post("/OrderItem", (req, res) => {
     OrderItem();
   }
   catch (err) {
-    
+    console.log(err);
     res.status(500).json({ responseMessage: 'Database not responding' });
   }
 
