@@ -1,259 +1,184 @@
 const express = require('express');
 const router = express.Router();
-const menuDao = require("../dao/menuDao");
-const menuDaoObj = new menuDao();
-const restaurantDao = require("../dao/restaurantDao");
-const restaurantDaoobj = new restaurantDao();
+var kafka = require('../kafka/client');
 
 const sha1 = require('sha1');
+var passport = require('passport');
+var requireAuth = passport.authenticate('jwt', { session: false });
 
-router.post("/addItem",(req,res)=>
-{
-    let userID = req.body.UserID;
-    let itemName = req.body.NameOfItem;
-    let DescriptionOfItem = req.body.DescriptionOfItem;
-    let priceOfItem = req.body.PriceOfItem;
-    let SectionName = req.body.SectionName;
-    let ItemImage= req.body.ItemImage;
-   
-   
-    addItem= async ()=>
-    {
-      let restid= await restaurantDaoobj.getRestaurantDetails(userID);
-      let section= await menuDaoObj.getSectionID(restid[0].RestaurantID,SectionName);
-
-      let itemObj={
-          "idofrest":restid[0].RestaurantID,
-          "NameOfItem":itemName,
-          "sectID":section[0].SectionID,
-          "DescriptionOfItem":DescriptionOfItem,
-           "PriceOfItem":priceOfItem,
-           "ItemImage":ItemImage
-        }
-
-      let result= await menuDaoObj.addnewItem(itemObj,restid[0].RestaurantID,section[0].SectionID);
-      console.log("Result is "+result[0]);
-      if(result[0])
-      {
-        res.writeHead(200, {'content-type':'application/json'});
-        res.end(JSON.stringify(result));
-
+router.post("/addItem",(req, res) => {
+  let userid = req.body.UserID;
+  let itemName = req.body.NameOfItem;
+  let DescriptionOfItem = req.body.DescriptionOfItem;
+  let priceOfItem = req.body.PriceOfItem;
+  let SectionName = req.body.SectionName;
+  let ItemImage = req.body.ItemImage;
+  kafka.make_request('restaurant_Topics', { "path": "getRestaurantDetails", "userid": userid }, function (err, restaurant) {
+    if (restaurant) {
+      let data = {
+        RestaurantID: restaurant.res._id,
+        SectionName: SectionName
       }
-      else
-      {
-        res.status(200).json({responseMessage: 'Could not add Item'});
-      }
-    }
-try{
-    addItem(); 
-}
-catch(error)
-{
-    res.status(500).json({responseMessage: 'Database not responding'});
-}
-}
-);
-router.post("/UpdateItem",(req,res)=>
-{
-    let userid = req.body.UserID;
-    let itemName = req.body.NameOfItem;
-    let DescriptionOfItem = req.body.DescriptionOfItem;
-    let priceOfItem = req.body.PriceOfItem;
-    let itemid=req.body.ItemID;
-    let ItemImage=req.body.ItemImage;
-  try{
-    UpdateItem= async ()=>
-    {
-      let restid= await restaurantDaoobj.getRestaurantDetails(userid);
-        let itemObj={
-           
-            "NameOfItem":itemName,
-            "DescriptionOfItem":DescriptionOfItem,
-            "PriceOfItem":priceOfItem,
-            "ItemImage":ItemImage
+      kafka.make_request('menu_Topics', { "path": "getSectionID", "body": data }, function (err, section) {
+        if (section) {
+
+          let itemObj = {
+            "restaurantid": restaurant.res._id,
+            "name": itemName,
+            "sectionid": section._id,
+            "description": DescriptionOfItem,
+            "price": priceOfItem,
+            "itemimage": ItemImage
           }
-      let result= await menuDaoObj.updateItem(restid[0].RestaurantID,itemid,itemObj);
-      if(result)
-            res.status(200).json({responseMessage: 'Updated the Item'});
-      else
-            res.status(200).json({responseMessage: 'Could not update the Item'});
-    }
-    UpdateItem(); 
-}
-catch(error)
-{
-    res.status(500).json({responseMessage: 'Database not responding'});
-}
-});
+          kafka.make_request('menu_Topics', { "path": "addnewItem", "body": itemObj }, function (err, newItem) {
+            if (newItem) {
 
-router.post("/deleteItem",(req,res)=>
-{
-  try{
-    deleteItem= async ()=>
-    {
-   
-    let itemid = req.body.itemid;
-      let result=menuDaoObj.deleteItem(itemid);
-      if(result)
-            res.status(200).json({responseMessage: 'Deleted the Item'});
-      else
-        res.status(200).json({responseMessage: 'Could not delete the Item'});
-    }
-    deleteItem(); 
-}
-catch(error)
-{
-    res.status(500).json({responseMessage: 'Database not responding'});
-}
-});
+              res.writeHead(200, { 'content-type': 'application/json' });
+              res.end(JSON.stringify(newItem));
 
-router.post("/addSection",(req,res)=>
-{
-    let sectionName = req.body.SectionName;
-    let userid=req.body.UserID;  
- 
-    addSection= async ()=>
-    {
-      let id= await restaurantDaoobj.getRestaurantDetails(userid);
-      let sectionObj={
-          "SectionName":sectionName,
-          "idOfRestaurant":id[0].RestaurantID
+            }
+
+          })
         }
-       
-      let result= await menuDaoObj.addnewSection(sectionObj,id[0].RestaurantID);
-     
-      if(result[0])
-      {
-        res.writeHead(200, {'content-type':'application/json'});
-        res.end(JSON.stringify(result));
+      })
+    }
+  })
 
+})
+
+router.post("/UpdateItem", (req, res) => {
+  let userid = req.body.UserID;
+  let itemName = req.body.NameOfItem;
+  let DescriptionOfItem = req.body.DescriptionOfItem;
+  let priceOfItem = req.body.PriceOfItem;
+  let itemid = req.body.ItemID;
+  let ItemImage = req.body.ItemImage;
+
+  kafka.make_request('restaurant_Topics', { "path": "getRestaurantDetails", "userid": userid }, function (err, restaurant) {
+    if (restaurant) {
+
+      let itemObj = {
+        "name": itemName,
+        "description": DescriptionOfItem,
+        "price": priceOfItem,
+        "itemimage": ItemImage
       }
-      else
-      {
-        res.status(200).json({responseMessage: 'Could not add Section'});
-      }
-    }
-try{
-    addSection(); 
-}
-catch(error)
-{
-    res.status(500).json({responseMessage: 'Database not responding'});
-}});
-router.post("/UpdateSection",(req,res)=>
-{
-  
-    let sectionName = req.body.SectionName;
-    let sectionID=req.body.SectionId;
-    let userid=req.body.UserID;
 
-   
-    UpdateSection= async ()=>
-    {
-      let id= await restaurantDaoobj.getRestaurantDetails(userid);
-      let result= await menuDaoObj.updateSection(sectionName,sectionID,id[0].RestaurantID);
-     
-      if(result[0])
-            {
-              res.writeHead(200, {'content-type':'application/json'});
-              res.end(JSON.stringify(result));
-            }
-            else
-            {
-              res.status(200).json({responseMessage: 'Could not get all details'});
-            }
+      kafka.make_request('menu_Topics', { "path": "updateItem", "itemid": itemid, "restaurantid": restaurant.res._id, "body": itemObj }, function (err, updateitem) {
+        if (updateitem) {
+          res.status(200).json({ responseMessage: 'Updated the Item' });
+        }
+      })
     }
-try{
-  UpdateSection(); 
-}
-catch(error)
-{
-    res.status(500).json({responseMessage: 'Database not responding'});
-}});
+  })
+})
 
-router.post("/getAllSections",(req,res)=>
-{
-    let userID = req.body.UserID;
-    
-  try{
-    getAllSections= async ()=>
-    {
-      let restid= await restaurantDaoobj.getRestaurantDetails(userID);
-      console.log("Restaurant id is "+restid[0].RestaurantID);
-      let result=await menuDaoObj.getAllSections(restid[0].RestaurantID);
 
-          if(result[0])
-            {
-              res.writeHead(200, {'content-type':'application/json'});
-              res.end(JSON.stringify(result));
-            }
-            else
-            {
-              res.status(200).json({responseMessage: 'Could not get all details'});
-            }
+router.post("/deleteItem", (req, res) => {
+
+  let itemid = req.body.itemid;
+  kafka.make_request('menu_Topics', { "path": "deleteItem", "itemid": itemid }, function (err, deleteItem) {
+    if (deleteItem) {
+      res.status(200).json({ responseMessage: 'Deleted the Item' });
     }
-    getAllSections(); 
-}
-catch(error)
-{
-    res.status(500).json({responseMessage: 'Database not responding'});
-}
+  })
 });
 
-router.post("/deleteSection",(req,res)=>
-{
-  try{
-    deleteSection= async ()=>
-    {
-      let userid=req.body.UserID;
-      let restid= await restaurantDaoobj.getRestaurantDetails(userid);
-      let sectionid = req.body.sectionid;
-      let result=await menuDaoObj.deleteSection(restid[0].RestaurantID,sectionid);
-      console.log("result in delete section is "+result);
-      if(result[0])
-            {
-              res.writeHead(200, {'content-type':'application/json'});
-              res.end(JSON.stringify(result));
-            }
-            else
-            {
-              res.status(200).json({responseMessage: 'Could not delete section'});
-            }
+router.post("/addSection",(req, res) => {
+  let sectionName = req.body.SectionName;
+  let userid = req.body.UserID;
+
+  kafka.make_request('restaurant_Topics', { "path": "getRestaurantDetails", "userid": userid }, function (err, restaurant) {
+    if (restaurant) {
+      let sectionObj = {
+        "sectionname": sectionName,
+        "restaurantid": restaurant.res._id
+      }
+      kafka.make_request('menu_Topics', { "path": "addnewSection", "body": sectionObj }, function (err, section) {
+        if (section) {
+          res.writeHead(200, { 'content-type': 'application/json' });
+          res.end(JSON.stringify(section));
+
+        }
+      })
     }
-    deleteSection();
-}
-catch(error)
-{
-    res.status(500).json({responseMessage: 'Database not responding'});
-}
+  })
 });
-router.post("/getAllItems",(req,res)=>
-{
-    let userID = req.body.UserID;
-    let sectionID=req.body.SectionID;
-    
-  try{
-    getAllItems= async ()=>
-    {
-      let restid= await restaurantDaoobj.getRestaurantDetails(userID);
-      let result=await menuDaoObj.getAllItems(restid[0].RestaurantID,sectionID);
-console.log("items are "+result);
-          if(result[0])
-            { 
-              res.writeHead(200, {'content-type':'application/json'});
-              res.end(JSON.stringify(result));
-            }
-            else
-            {
-              res.status(200).json({responseMessage: 'Could not get all details'});
-            }
+router.post("/UpdateSection",(req, res) => {
+
+  let sectionName = req.body.SectionName;
+  let sectionID = req.body.SectionId;
+  let userid = req.body.UserID;
+  kafka.make_request('restaurant_Topics', { "path": "getRestaurantDetails", "userid": userid }, function (err, restaurant) {
+    if (restaurant) {
+
+      kafka.make_request('menu_Topics', { "path": "updateSection", "restid": restaurant.res._id, "sectionID": sectionID, "sectionName": sectionName }, function (err, updatesection) {
+        if (updatesection) {
+          res.writeHead(200, { 'content-type': 'application/json' });
+          res.end(JSON.stringify(updatesection));
+        }
+      })
     }
-    getAllItems(); 
-}
-catch(error)
-{
-    res.status(500).json({responseMessage: 'Database not responding'});
-}
+  })
+});
+
+router.post("/getAllSections",(req, res) => {
+  let userID = req.body.UserID;
+
+  kafka.make_request('restaurant_Topics', { "path": "getRestaurantDetails", "userid": userID }, function (err, restaurant) {
+    if (restaurant) {
+      kafka.make_request('menu_Topics', { "path": "getAllSections", "RestaurantID": restaurant.res._id }, function (err, getAllSections) {
+        if (getAllSections) {
+          let arr = [];
+          for (let k = 0; k < getAllSections.length; k++) {
+            let obj = {
+              _id: getAllSections[k]._id,
+              sectionname: getAllSections[k].sectionname
+            }
+            arr.push(obj);
+          }
+          res.writeHead(200, { 'content-type': 'application/json' });
+          res.end(JSON.stringify(arr));
+        }
+
+      });
+    }
+  })
+})
+
+router.post("/deleteSection",(req, res) => {
+
+  let userid = req.body.UserID;
+  let sectionid = req.body.sectionid;
+  kafka.make_request('restaurant_Topics', { "path": "getRestaurantDetails", "userid": userid }, function (err, restaurant) {
+    if (restaurant) {
+
+      kafka.make_request('menu_Topics', { "path": "deleteSection", "RestaurantID": restaurant.res._id, "sectionid": sectionid }, function (err, deleteSection) {
+        if (deleteSection) {
+          res.writeHead(200, { 'content-type': 'application/json' });
+          res.end(JSON.stringify(deleteSection));
+        }
+      })
+    }
+  })
+});
+router.post("/getAllItems", (req, res) => {
+  let userID = req.body.UserID;
+  let sectionID = req.body.SectionID;
+
+  kafka.make_request('restaurant_Topics', { "path": "getRestaurantDetails", "userid": userID }, function (err, restaurant) {
+    if (restaurant) {
+
+      kafka.make_request('menu_Topics', { "path": "getAllItems", "RestaurantID": restaurant.res._id, "sectionID": sectionID }, function (err, getAllItems) {
+        if (getAllItems) {
+
+          res.writeHead(200, { 'content-type': 'application/json' });
+          res.end(JSON.stringify(getAllItems));
+        }
+      })
+    }
+  })
+
 });
 
 
