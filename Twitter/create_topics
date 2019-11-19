@@ -1,0 +1,13 @@
+In Docker:
+usr/bin/kafka-topics --create --zookeeper zoo1:2181 --replication-factor 1 --partitions 1 --topic message_Topics
+usr/bin/kafka-topics --create --zookeeper zoo1:2181 --replication-factor 1 --partitions 1 --topic signupLogin_Topics
+usr/bin/kafka-topics --create --zookeeper zoo1:2181 --replication-factor 1 --partitions 1 --topic profile_Topics
+usr/bin/kafka-topics --create --zookeeper zoo1:2181 --replication-factor 1 --partitions 1 --topic response_topic
+
+
+To run in Local:
+
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic signupLogin_Topics
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic profile_Topics
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic message_Topics
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic response_topic
