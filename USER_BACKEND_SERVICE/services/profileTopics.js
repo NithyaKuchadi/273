@@ -11,7 +11,10 @@ exports.profileService = function profileService(msg, callback) {
             updateprofile(msg, callback);
             break;
         case "updateprofileImage":
-                updateprofileImage(msg, callback);
+            updateprofileImage(msg, callback);
+            break;
+        case "getAllUsersDetails":
+                getAllUsersDetails(msg,callback);
                 break;
     }
 };
@@ -52,6 +55,20 @@ async function getProfileDetails(msg, callback) {
 
     })
 }
+async function getAllUsersDetails( msg,callback) {
+    let con = await dBConnection();
+     con.query('SELECT * from user', async function (err, result) {
+                if (result) {
+                    con.query("COMMIT", (err, commit) => {
+                        if (commit) {
+                            callback(null, { status: 200, result });
+                        }
+                    })
+                }
+            })
+
+        }
+
 async function getProfileDetailsvthoutcaching(msg, callback) {
     let con = await dBConnection();
     console.log("msg is  " + msg.body.userid);
