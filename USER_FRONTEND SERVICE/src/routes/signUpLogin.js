@@ -62,15 +62,19 @@ router.post('/login', function (req, res) {
     "password": password
   }
   kafka.make_request('signupLogin_Topics', { "path": "login", "body": logindata }, function (err, result) {
-    console.log("in login.....", JSON.stringify(result));
+   
     if (result) {
       var token = jwt.sign({ id: result.result[0].userid, username: result.result[0].username }, config.secret_key, {
         expiresIn: 7200
       });
       let cookies = { token: token, cookie1: result.result[0].userid, cookie2: result.result[0].username, cookie3: result.result[0].userhandle };
 
+      let data={
+        cookies:cookies,
+        result:result
+      }
       res.writeHead(200, { 'content-type': 'application/json' });
-      res.end(JSON.stringify(cookies));
+      res.end(JSON.stringify(data));
 
     }
     else {
