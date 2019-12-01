@@ -26,6 +26,15 @@ router.post("/getProfileDetails", (req, res) => {
     }
   })
 });
+router.get("/getAllUsersDetails", (req, res) => {
+  console.log("IN getAllUsersDetails");
+  kafka.make_request('profile_Topics', { "path": "getAllUsersDetails","body":{}}, function (err, result) {
+    if (result) {
+       res.writeHead(200, { 'content-type': 'application/json' });
+      res.end(JSON.stringify(result));
+    }
+  })
+});
 
 router.post("/updateprofile", (req, res) => {
   let data = {};
