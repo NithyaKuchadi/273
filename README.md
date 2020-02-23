@@ -1,4 +1,4 @@
-# CMPE 273
+# GRUBHUB Simulation
 Lab1 Assignment
 
 Calculator Application:
